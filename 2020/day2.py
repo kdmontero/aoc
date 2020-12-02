@@ -12,23 +12,15 @@ with open('day2.txt') as given:
     for line in given.readlines():
         passwords.append(parse(line.rstrip('\n')))
 
-# part 1
-valid = 0
+valid1 = 0
+valid2 = 0
 for password in passwords:
     lmin, lmax, letter, pw = password
     c = Counter(pw)
     if int(lmin) <= c[letter] <= int(lmax):
-        valid += 1
-
-print(valid)
-
-
-# part 2
-valid = 0
-for password in passwords:
-    lmin, lmax, letter, pw = password
-    c = Counter(pw)
+        valid1 += 1
     if (pw[int(lmin)-1] == letter and pw[int(lmax)-1] != letter) or (pw[int(lmin)-1] != letter and pw[int(lmax)-1] == letter):
-        valid += 1
+        valid2 += 1
 
-print(valid)
+print(f'There are {valid1} valid passwords in part 1')
+print(f'There are {valid2} valid passwords in part 2')
