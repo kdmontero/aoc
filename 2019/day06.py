@@ -1,4 +1,4 @@
-with open('day6.txt') as given:
+with open('day06.txt') as given:
 	data_map = {}
 	for line in given.read().split('\n'):
 		data_map[line[4:]] = line[:3]

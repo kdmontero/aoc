@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-with open('day2.txt') as given:
+with open('day02.txt') as given:
 	intcode = [int(num) for num in given.read().split(',')]
 
 def run(intcode, a, b):

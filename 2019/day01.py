@@ -1,4 +1,4 @@
-with open('day1.txt') as given:
+with open('day01.txt') as given:
     masses = [int(line) for line in given.read().split('\n')]
 
 # part 1

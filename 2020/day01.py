@@ -1,4 +1,4 @@
-with open('day1.txt') as given:
+with open('day01.txt') as given:
     expenses = [int(expense) for expense in given.read().split('\n')]
 
 # PART 1

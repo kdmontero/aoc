@@ -1,4 +1,4 @@
-with open('day3.txt') as given:
+with open('day03.txt') as given:
     wires = given.read().split('\n')
 
 wire1 = wires[0].split(',')

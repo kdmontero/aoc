@@ -1,4 +1,4 @@
-with open('day3.txt') as given:
+with open('day03.txt') as given:
     unit_map = given.read().split('\n')
 
 def walk(map_, right, down):

@@ -1,4 +1,4 @@
-with open('day4.txt') as given:
+with open('day04.txt') as given:
     passports = []
     pp_details = {}
     for line in given.readlines():

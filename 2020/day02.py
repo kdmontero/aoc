@@ -5,7 +5,7 @@ def parse(text):
     pw = text.split('-')[1].split()[2]
     return (lmin, lmax, letter, pw)
 
-with open('day2.txt') as given:
+with open('day02.txt') as given:
     passwords = [parse(line) for line in given.read().split('\n')]
 
 valid1 = 0

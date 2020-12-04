@@ -1,4 +1,4 @@
-with open('day5.txt') as given:
+with open('day05.txt') as given:
 	program = [int(num) for num in given.read().split(',')]
 
 def opcode(num):
