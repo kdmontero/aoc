@@ -1,26 +1,10 @@
 with open('day05.txt') as given:
 	program = [int(num) for num in given.read().split(',')]
 
-def opcode(num):
-	return int(str(num)[-2:])
-	
-def mode1(num):
-	if len(str(num))>=3:
-		return int(str(num)[-3])
-	else:
-		return 0
-
-def mode2(num):
-	if len(str(num))>=4:
-		return int(str(num)[-4])
-	else:
-		return 0
-		
-def mode3(num):
-	if len(str(num))>=5:
-		return int(str(num)[-5])
-	else:
-		return 0
+opcode = lambda num: int(str(num)[-2:])
+mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
+mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
+mode3 = lambda num: int(str(num)[-5]) if len(str(num))>=5 else 0
 
 def run(program, input_num):
 	i=0
