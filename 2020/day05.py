@@ -42,7 +42,8 @@ def check_seat(seat_id):
         col = seat_id - (row * 8)
         if not (0 <= col <= 7):
             continue
-        return (row, col) not in seat_dict
+        if (row, col) not in seat_dict:
+            return True
     return False
 
 my_id = None
