@@ -2,8 +2,8 @@ with open('day07.txt') as f:
     lines = f.read().split('\n')
     rules = {}
     for line in lines:
-        outer, inner = tuple(line.split(' bags contain '))
-        inner = inner.replace(' bags', '').replace(' bag', '').rstrip('.').split(', ')
+        outer, inner = line.split(' bags contain ')
+        inner = inner.replace(' bags','').replace(' bag','').rstrip('.').split(', ')
         inner_parsed = []
         for element in inner:
             try:
