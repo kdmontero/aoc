@@ -5,9 +5,8 @@ with open('day08.txt') as f:
 
 # part 1
 def run(boot):
-    accumulator = 0
+    accumulator = i = 0
     done = set()
-    i = 0
     while i < len(boot):
         op, arg = boot[i]
         if op == 'acc':
