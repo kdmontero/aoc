@@ -24,12 +24,12 @@ while data1:
         min_zeros = zeros
         check = ones * twos
 
-print(check) # 1572
+print(f'Part 1: {check}') # 1572
 
 
 # part 2
 decode = {
-    0: '-', # black
+    0: ' ', # black
     1: '#', # white
     2: ' '  # transparent
 }
@@ -42,4 +42,5 @@ for i in range(0, width*height):
             break
 
 bios = [image[i:i+width] for i in range(0, len(image), width)]
+print('Part 2:')
 print(*bios, sep='\n') # KYHFE

@@ -169,5 +169,5 @@ class Module:
                 print("Program is not working")
                 return
 
-print(Module().run(1)) # 2745604242 - part 1
-print(Module().run(2)) # 51135 - part 2
+print(f'Part 1: {Module().run(1)}') # 2745604242
+print(f'Part 2: {Module().run(2)}') # 51135

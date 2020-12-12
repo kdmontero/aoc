@@ -32,8 +32,5 @@ for pw in range(int(min_), int(max_)+1):
 	if adj_check2(str(pw)) and inc_check(str(pw)):
 		count2 += 1
 
-# part 1
-print(count1) # 475
-
-# part 2
-print(count2) # 297
+print(f'Part 1: {count1}') # 475
+print(f'Part 2: {count2}') # 297

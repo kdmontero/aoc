@@ -64,7 +64,7 @@ for y_ss in range(len(space)):
 
 x_ss, y_ss = ss_position
 space[y_ss] = space[y_ss][:x_ss]+ss_char+space[y_ss][x_ss+1:]
-print(f"Space Station {ss_position} can see {max_visible} asteroids") # 214
+print(f'Part 1: {max_visible} at Space Station {ss_position}') # 214
 
 
 # part 2
@@ -94,7 +94,7 @@ for visible in cycle(line_of_sight):
             coordinates = (vaporized.x0, vaporized.y0)
             break
 
-print(coordinates[0]*100 + coordinates[1]) # 502
+print(f'Part 2: {coordinates[0]*100 + coordinates[1]}') # 502
 
 # visualized part 2
 def blast(space, asteroid):
@@ -108,9 +108,9 @@ def start_giant_laser(space, target, asteroid_list):
         os.system("clear")
         blast(space, asteroid)
         print(*space, sep="\n")
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 # comment out below code to skip terminal animation
 start_giant_laser(space, target, in_order)
-print(f"Space Station {ss_position} can see {max_visible} asteroids") # 214
-print(coordinates[0]*100 + coordinates[1]) # 502
+print(f'Part 1: {max_visible} at Space Station {ss_position}') # 214
+print(f'Part 2: {coordinates[0]*100 + coordinates[1]}') # 502

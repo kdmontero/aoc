@@ -97,10 +97,10 @@ def run(program, input_num):
 		else:
 			break
 
-# part 1
 program1 = program[:]
-print(run(program1, 1)) # 7692125
+input1 = 1
+print(f'Part 1: {run(program1, input1)}') # 7692125
 
-# part 2
 program2 = program[:]
-print(run(program2, 5)) # 14340395
+input2 = 5
+print(f'Part 2: {run(program2, input2)}') # 14340395

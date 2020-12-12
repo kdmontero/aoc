@@ -21,15 +21,16 @@ def run(intcode, a, b):
 
 # part 1
 intcode1 = intcode[:]
-print(run(intcode1, 12, 2)) # 7594646
+print(f'Part 1: {run(intcode1, 12, 2)}') # 7594646
 
 
 # part 2
+output = 19690720
 for noun in range(100):
 	for verb in range(100):
 		intcode2 = intcode[:]
-		if run(intcode2, noun, verb) == 19690720:
-			print(100 * noun + verb) # 3376
+		if run(intcode2, noun, verb) == output:
+			print(f'Part 2: {100 * noun + verb}') # 3376
 			break
 	else:
 		continue

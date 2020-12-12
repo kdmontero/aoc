@@ -40,7 +40,7 @@ for line in wire2:
 			crossed[current] = path1[current] + length2
 
 # part 1
-print(min(abs(x) + abs(y) for x, y in crossed)) # 308
+print(f'Part 1: {min(abs(x) + abs(y) for x, y in crossed)}') # 308
 
 # part 2
-print(min(crossed.values())) # 12934
+print(f'Part 2: {min(crossed.values())}') # 12934

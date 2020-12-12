@@ -20,7 +20,7 @@ total = 0
 for orbits in orbital.values():
 	total += len(orbits)
 	
-print(total) # 151345
+print(f'Part 1: {total}') # 151345
 
 
 # part 2
@@ -47,4 +47,4 @@ for orbit in common:
 	if steps_san < min_san:
 		min_san = steps_san
 	
-print(min_you + min_san - 2) # 391
+print(f'Part 2: {min_you + min_san - 2}') # 391

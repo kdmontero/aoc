@@ -6,7 +6,7 @@ total = 0
 for mass in masses:
     total += (mass//3) - 2
 
-print(total) # 3330521
+print(f'Part 1: {total}') # 3330521
 
 
 # part 2
@@ -21,4 +21,4 @@ for mass in masses:
         mass = fuel
     total += intcode_mass
 
-print(total) # 4992931
+print(f'Part 2L {total}') # 4992931

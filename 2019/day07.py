@@ -133,7 +133,7 @@ for ph in settings:
 	if E.output > high_signal:
 		high_signal = E.output
 
-print(high_signal) # 47064
+print(f'Part 1: {high_signal}') # 47064
 
 
 # part 2
@@ -155,11 +155,11 @@ for ph in settings:
 		halted = amps[i].is_halted
 		if max_signal < amps[i].output:
 			max_signal = amps[i].output
-			best_setting = ph
+			best_setting = ''.join(ph)
 		if any([amp.is_halted for amp in amps]) and i == 4:
 			halted = True
 		i += 1
 		if i == 5:
 			i = 0
 
-print(f"Max output signal is {max_signal} under setting {best_setting}") # 4248984 with phase setting 65987
+print(f"Part 2: {max_signal} (with phase setting {best_setting})") # 4248984 with phase setting 65987
