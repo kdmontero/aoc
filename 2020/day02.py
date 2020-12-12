@@ -17,5 +17,5 @@ for password in passwords:
     if bool(pw[int(lmin)-1] == letter) != bool(pw[int(lmax)-1] == letter): # XOR: bool(x) != bool(y)
         valid2 += 1
 
-print(f'There are {valid1} valid passwords in part 1') # 445
-print(f'There are {valid2} valid passwords in part 2') # 491
+print(f'Part 1: {valid1}') # 445
+print(f'Part 2: {valid2}') # 491

@@ -14,7 +14,7 @@ for i in range(25, len(xmas)):
         invalid_num = xmas[i]
         break
     
-print(invalid_num) # 248131121
+print(f'Part 1: {invalid_num}') # 248131121
 
 
 # part 2
@@ -24,5 +24,7 @@ for low in range(i):
         high += 1
     
     if sum(xmas[low:high+1]) == invalid_num:
-        print(min(xmas[low:high+1]) + max(xmas[low:high+1])) # 31580383
+        weakness = min(xmas[low:high+1]) + max(xmas[low:high+1])
         break
+
+print(f'Part 2: {weakness}') # 31580383

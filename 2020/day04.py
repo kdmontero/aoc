@@ -22,7 +22,7 @@ for passport in passports:
     if required.issubset(pp_fields):
         valid1.append(passport)
 
-print(len(valid1)) # 235
+print(f'Part 1: {len(valid1)}') # 235
 
 
 # part 2
@@ -74,4 +74,4 @@ for passport in valid1:
     if pp_isvalid(passport):
         valid2 += 1
 
-print(valid2) # 194
+print(f'Part 2: {valid2}') # 194

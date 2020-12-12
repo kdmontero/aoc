@@ -21,7 +21,7 @@ def run(boot):
         done.add(i)
     return (accumulator, True)
 
-print(run(boot)[0]) # 1801
+print(f'Part 1: {run(boot)[0]}') # 1801
 
 
 # part 2
@@ -36,5 +36,5 @@ for i in range(len(boot)):
         boot_test[i][0] = 'nop'
     valid_acc, is_halted = run(boot_test)
     if is_halted:
-        print(valid_acc) # 2060
+        print(f'Part 2: {valid_acc}') # 2060
         break

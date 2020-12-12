@@ -33,7 +33,7 @@ for seat in seats:
     max_id = max(max_id, seat_id)
     seat_dict[(row(seat), col(seat))] = seat_id
 
-print(max_id) # 955
+print(f'Part 1: {max_id}') # 955
 
 
 # part 2
@@ -55,4 +55,4 @@ for seat, seat_id in seat_dict.items():
         my_id = seat_id-1
         break
 
-print(my_id) # 569
+print(f'Part 2: {my_id}') # 569

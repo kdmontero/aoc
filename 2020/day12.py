@@ -94,7 +94,7 @@ for action, value in nav:
     elif action == 'F':
         ship1.forward(value)
 
-print(ship1.distance()) # 362
+print(f'Part 1: {ship1.distance()}') # 362
 
 
 # part 2
@@ -115,4 +115,4 @@ for action, value in nav:
     elif action == 'F':
         ship2.way_forward(value)
 
-print(ship2.distance()) # 29895
+print(f'Part 2: {ship2.distance()}') # 29895

@@ -26,7 +26,7 @@ def walk(map_, right, down):
     return trees
 
 # part 1
-print(walk(unit_map[:], 3, 1)) # 244
+print(f'Part 1: {walk(unit_map[:], 3, 1)}') # 244
 
 
 # part 2
@@ -35,4 +35,4 @@ product_trees = 1
 for slope in slopes:
     product_trees *= walk(unit_map[:], *slope)
 
-print(product_trees) # 9406609920
+print(f'Part 2: {product_trees}') # 9406609920

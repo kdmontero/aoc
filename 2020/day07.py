@@ -34,7 +34,7 @@ for bag in rules:
     if is_valid(bag):
         contains_shiny_gold += 1
 
-print(contains_shiny_gold - 1) # 272
+print(f'Part 1: {contains_shiny_gold - 1}') # 272
 
 
 # part 2
@@ -46,4 +46,4 @@ def total_bags(num, color):
         total += total_bags(qty, bag)
     return (num*total)+num
 
-print(total_bags(1, 'shiny gold') - 1) # 172246
+print(f'Part 2: {total_bags(1, "shiny gold") - 1}') # 172246
