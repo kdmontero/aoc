@@ -9,20 +9,23 @@ with open('day11.txt') as f:
 
 # part 1
 layout = deepcopy(original)
-def reposition1(y, x):
+def get_adjacent1(y, x):
+    a = layout.get((y-1, x-1))
+    c = layout.get((y-1, x+1))
+    d = layout.get((y, x-1))
+    b = layout.get((y-1, x))
+    e = layout.get((y, x+1))
+    f = layout.get((y+1, x-1))
+    g = layout.get((y+1, x))
+    h = layout.get((y+1, x+1))
+    return [a,b,c,d,e,f,g,h]
+
+def reposition(y, x, get_adjacent, seats_to_empty):
     if layout[(y, x)] in {'#','L'}:
-        a = layout[(y-1, x-1)] if (y-1, x-1) in layout else '.'
-        b = layout[(y-1, x)] if (y-1, x) in layout else '.'
-        c = layout[(y-1, x+1)] if (y-1, x+1) in layout else '.'
-        d = layout[(y, x-1)] if (y, x-1) in layout else '.'
-        e = layout[(y, x+1)] if (y, x+1) in layout else '.'
-        f = layout[(y+1, x-1)] if (y+1, x-1) in layout else '.'
-        g = layout[(y+1, x)] if (y+1, x) in layout else '.'
-        h = layout[(y+1, x+1)] if (y+1, x+1) in layout else '.'
-        adjacent = [a,b,c,d,e,f,g,h]
-        if layout[(y, x)] == 'L' and '#' not in adjacent:
+        adjacents = get_adjacent(y,x)
+        if layout[(y, x)] == 'L' and '#' not in adjacents:
             new_layout[(y, x)] = '#'
-        elif layout[(y, x)] == '#' and adjacent.count('#') >= 4:
+        elif layout[(y, x)] == '#' and adjacents.count('#') >= seats_to_empty:
             new_layout[(y, x)] = 'L'
         else:
             new_layout[(y, x)] = layout[(y, x)]
@@ -37,106 +40,50 @@ stabilized = False
 while not stabilized:
     occupied1 = 0
     for grid in layout:
-        occupied1 += reposition1(*grid)
+        occupied1 += reposition(*grid, get_adjacent1, 4)
     if new_layout == layout:
         stabilized = True
     else:
         layout = new_layout
         new_layout = {}
 
-print(f'Part 1: {occupied1}')
+print(f'Part 1: {occupied1}') # 2319
 
 
 # part 2
 def check_N(y, x):
-    while True:
-        try:
-            N = layout[(y-1, x)]
-            if N in {'#', 'L'}:
-                return N
-            else:
-                y -= 1
-        except:
-            return '.'
+    N = layout.get((y-1, x))
+    return N if N != '.' else check_N(y-1, x)
 
 def check_S(y, x):
-    while True:
-        try:
-            S = layout[(y+1, x)]
-            if S in {'#', 'L'}:
-                return S
-            else:
-                y += 1
-        except:
-            return '.'
+    S = layout.get((y+1, x))
+    return S if S != '.' else check_S(y+1, x)
 
 def check_E(y, x):
-    while True:
-        try:
-            E = layout[(y, x+1)]
-            if E in {'#', 'L'}:
-                return E
-            else:
-                x += 1
-        except:
-            return '.'
+    E = layout.get((y, x+1))
+    return E if E != '.' else check_E(y, x+1)
 
 def check_W(y, x):
-    while True:
-        try:
-            W = layout[(y, x-1)]
-            if W in {'#', 'L'}:
-                return W
-            else:
-                x -= 1
-        except:
-            return '.'
+    W = layout.get((y, x-1))
+    return W if W != '.' else check_W(y, x-1)
 
 def check_NW(y, x):
-    while True:
-        try:
-            NW = layout[(y-1, x-1)]
-            if NW in {'#', 'L'}:
-                return NW
-            else:
-                x, y = x-1, y-1
-        except:
-            return '.'
+    NW = layout.get((y-1, x-1))
+    return NW if NW != '.' else check_NW(y-1, x-1)
 
 def check_NE(y, x):
-    while True:
-        try:
-            NE = layout[(y-1, x+1)]
-            if NE in {'#', 'L'}:
-                return NE
-            else:
-                x, y = x+1, y-1
-        except:
-            return '.'
+    NE = layout.get((y-1, x+1))
+    return NE if NE != '.' else check_NE(y-1, x+1)
 
 def check_SE(y, x):
-    while True:
-        try:
-            SE = layout[(y+1, x+1)]
-            if SE in {'#', 'L'}:
-                return SE
-            else:
-                x, y = x+1, y+1
-        except:
-            return '.'
+    SE = layout.get((y+1, x+1))
+    return SE if SE != '.' else check_SE(y+1, x+1)
 
 def check_SW(y, x):
-    while True:
-        try:
-            SW = layout[(y+1, x-1)]
-            if SW in {'#', 'L'}:
-                return SW
-            else:
-                x, y = x-1, y+1
-        except:
-            return '.'
+    SW = layout.get((y+1, x-1))
+    return SW if SW != '.' else check_SW(y+1, x-1)
 
-def reposition2(y, x):
+def get_adjacent2(y, x):
     a = check_N(y, x)
     b = check_E(y, x)
     c = check_S(y, x)
@@ -145,16 +92,7 @@ def reposition2(y, x):
     f = check_SE(y, x)
     g = check_SW(y, x)
     h = check_NW(y, x)
-    adjacent = [a,b,c,d,e,f,g,h]
-    if layout[(y, x)] == 'L' and '#' not in adjacent:
-        new_layout[(y, x)] = '#'
-    elif layout[(y, x)] == '#' and adjacent.count('#') >= 5:
-        new_layout[(y, x)] = 'L'
-    else:
-        new_layout[(y, x)] = layout[(y, x)]
-    if new_layout[(y, x)] == '#':
-        return 1
-    return 0
+    return [a,b,c,d,e,f,g,h]
 
 layout = deepcopy(original)
 new_layout = {}
@@ -162,11 +100,11 @@ stabilized = False
 while not stabilized:
     occupied2 = 0
     for grid in layout:
-        occupied2 += reposition2(*grid)
+        occupied2 += reposition(*grid, get_adjacent2, 5)
     if new_layout == layout:
         stabilized = True
     else:
         layout = new_layout
         new_layout = {}
 
-print(f'Part 2: {occupied2}')
+print(f'Part 2: {occupied2}') # 2117
