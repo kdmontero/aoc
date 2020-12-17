@@ -2,7 +2,7 @@ with open('day14.txt') as f:
     program = []
     temp_group = []
     for line in f.read().split('\n'):
-        if line[:4] == 'mask':
+        if line.startswith('mask'):
             if temp_group:
                 temp_group.append(values)
                 program.append(temp_group)
