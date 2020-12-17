@@ -1,3 +1,5 @@
+import itertools
+
 with open('day14.txt') as f:
     program = []
     temp_group = []
@@ -17,7 +19,7 @@ with open('day14.txt') as f:
     program.append(temp_group)
 
 # part 1
-def get_masked(mask, value):
+def masked_value(mask, value):
     bin_value = list(format(value, '036b'))
     for i, digit in enumerate(mask):
         if digit != 'X':
@@ -28,6 +30,36 @@ mem = {}
 for group in program:
     mask = group[0]
     for address, value in group[1]:
-        mem[address] = get_masked(mask, value)
+        mem[address] = masked_value(mask, value)
 
 print(f'Part 1: {sum(mem.values())}') # 12408060320841
+
+
+# part 2
+def masked_address(mask, address):
+    bin_value = list(format(address, '036b'))
+    for i, digit in enumerate(mask):
+        if digit != '0':
+            bin_value[i] = digit
+    return ''.join(bin_value)
+
+def get_addresses(masked_addr):
+    floating = masked_addr.count('X')
+    combinations = [list(i) for i in itertools.product(['0','1'], repeat=floating)]
+    addresses = []
+    for comb in combinations:
+        temp_addr = masked_addr
+        for digit in comb:
+            temp_addr = temp_addr.replace('X', digit, 1)
+        addresses.append(int(temp_addr, 2))
+    return addresses
+
+mem = {}
+for group in program:
+    mask = group[0]
+    for address, value in group[1]:
+        addresses = get_addresses(masked_address(mask, address))
+        for addr in addresses:
+            mem[addr] = value
+
+print(f'Part 2: {sum(mem.values())}') # 4466434626828
