@@ -1,4 +1,4 @@
-from copy import deepcopy
+from collections import OrderedDict
 
 with open('day16.txt') as f:
     rules = {}
@@ -38,3 +38,48 @@ for i, ticket in enumerate(nearby_tickets):
                 invalid_tickets.append(i)
 
 print(f'Part 1: {error_rate}') # 28882
+
+
+# part 2
+valid_tickets = nearby_tickets
+for i in sorted(invalid_tickets, reverse=True):
+    valid_tickets.pop(i)
+
+field_index = {}
+indexes = set()
+field_indexes = []
+
+def check_value(value, field_range): # field_range is list of ranges
+    for range_ in field_range:
+        if value in range_:
+            return True
+    return False
+
+def check_field(index, field):
+    for ticket in valid_tickets:
+        if not check_value(ticket[index], field):
+            return False
+    return True
+
+for field in rules:
+    valid_indexes = []
+    for i in range(len(rules)):
+        if not check_field(i, rules[field]):
+            continue
+        else:
+            valid_indexes.append(i)
+    field_indexes.append([field, valid_indexes])
+
+field_indexes = OrderedDict(sorted(field_indexes, key=lambda x: len(x[1])))
+
+ans = 1
+for field in field_indexes.keys():
+    for index in field_indexes[field]:
+        if index not in indexes:
+            field_index[field] = index
+            indexes.add(index)
+    
+    if field.startswith('departure'):
+        ans *= my_ticket[field_index[field]]
+
+print(f'Part 2: {ans}') # 1429779530273
