@@ -38,7 +38,7 @@ print(f'Part 1: {len(active_cubes)}') # 232
 active_cubes = given_active_cubes.copy()
 for _ in range(6):
     dimension = Counter() # dict of pos: n, where n = active neighbors
-    for (w, z, y, x) in active_cubes:    
+    for (w, z, y, x) in active_cubes:
         for wi in range(w-1, w+2):
             for zi in range(z-1, z+2):
                 for yi in range(y-1, y+2):
