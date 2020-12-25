@@ -28,4 +28,4 @@ elif loop == door_loop:
 print(f'Part 1: {encryption_key}') # 7936032
 
 # part 2
-print('Part 2: Complete all 49 stars in Advent of Code 2020') 
+print('Part 2: Complete all 49 stars in Advent of Code 2020')
