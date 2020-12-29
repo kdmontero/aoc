@@ -1,12 +1,11 @@
 with open('day05.txt') as given:
 	program = [int(num) for num in given.read().split(',')]
 
-opcode = lambda num: int(str(num)[-2:])
-mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
-mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
-mode3 = lambda num: int(str(num)[-5]) if len(str(num))>=5 else 0
-
 def run(program, input_num):
+	opcode = lambda num: int(str(num)[-2:])
+	mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
+	mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
+
 	i=0
 	while i < len(program)+1:
 		if opcode(program[i]) == 1:
@@ -95,6 +94,7 @@ def run(program, input_num):
 		elif opcode(program[i]) == 99:
 			return output
 		else:
+			print('Program not working')
 			break
 
 program1 = program[:]

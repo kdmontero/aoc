@@ -3,11 +3,6 @@ import itertools
 with open('day07.txt') as given:
 	software = [int(num) for num in given.read().split(',')]
 
-opcode = lambda num: int(str(num)[-2:])
-mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
-mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
-mode3 = lambda num: int(str(num)[-5]) if len(str(num))>=5 else 0
-
 class Amplifier:
 	def __init__(self, phase):
 		self.phase = int(phase)
@@ -18,6 +13,10 @@ class Amplifier:
 		self.is_phase = False
 
 	def run(self, input_signal):
+		opcode = lambda num: int(str(num)[-2:])
+		mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
+		mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
+
 		program = self.program
 		i = self.index
 		while i < len(program):
