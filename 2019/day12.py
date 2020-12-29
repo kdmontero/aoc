@@ -80,7 +80,7 @@ def get_prime_factors(num):
 def get_lcm(nums):
     factors = Counter()
     for num in nums:
-        factors |= get_prime_factors(num)
+        factors |= get_prime_factors(num) # union of Counters
     lcm = 1
     for factor, exp in factors.items():
         lcm *= factor**exp
