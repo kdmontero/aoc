@@ -1,4 +1,3 @@
-from copy import deepcopy
 from collections import Counter
 
 with open('day12.txt') as f:
