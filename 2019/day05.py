@@ -35,7 +35,6 @@ def run(program, input_num):
 			i += 2
 		elif opcode(program[i]) == 4:
 			output = program[program[i+1]]
-			# print(output) # shows all the output
 			i += 2
 		elif opcode(program[i]) == 5:
 			if mode1(program[i]) == 1:
