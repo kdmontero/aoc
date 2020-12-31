@@ -3,7 +3,7 @@ with open('day19.txt') as given:
 
 intcode += [0]*10000
 
-class Tractor:
+class TractorBeam:
     def __init__(self):
         self.relbase = 0
         self.index = 0
@@ -179,7 +179,7 @@ class Tractor:
 affected = 0
 for y in range(50):
     for x in range(50):
-        if Tractor().run(y, x):
+        if TractorBeam().run(y, x):
             affected += 1
 
 print(f'Part 1: {affected}') # 183
