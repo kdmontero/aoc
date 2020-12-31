@@ -228,12 +228,12 @@ def convert_to_input(routine):
 bot2 = ASCII()
 bot2.program[0] = 2
 
-P = 'A,B,A,B,C,B,C,A,B,C'
+M = 'A,B,A,B,C,B,C,A,B,C'
 A = 'R,4,R,10,R,8,R,4'
 B = 'R,10,R,6,R,4'
 C = 'R,4,L,12,R,6,L,12'
 
-main = convert_to_input(P)
+main = convert_to_input(M)
 pattern_A = convert_to_input(A)
 pattern_B = convert_to_input(B)
 pattern_C = convert_to_input(C)
@@ -244,3 +244,7 @@ dust = bot2.run(main, pattern_A, pattern_B, pattern_C, show_visualization)
 if show_visualization:
     print(f'Part 1: {total}') # 5788
 print(f'Part 2: {dust}') # 648545
+print(f'Main Pattern: {M}')
+print(f'Pattern A: {A}')
+print(f'Pattern B: {B}')
+print(f'Pattern C: {C}')
