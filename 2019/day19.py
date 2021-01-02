@@ -9,15 +9,15 @@ class TractorBeam:
         self.index = 0
         self.program = intcode[:]
     
-    def run(self, y, x):
-        opcode = lambda num: int(str(num)[-2:])
-        mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
-        mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
-        mode3 = lambda num: int(str(num)[-5]) if len(str(num))>=5 else 0
+    def check(self, y, x):
+        opcode = lambda num: num%100
+        mode1 = lambda num: divmod(num%1000, 100)[0] if num >= 100 else 0
+        mode2 = lambda num: divmod(num%10000, 1000)[0] if num >= 1000 else 0
+        mode3 = lambda num: divmod(num%100000, 10000)[0] if num >= 10000 else 0
 
         i = self.index
         module = self.program
-        input_list = [y, x]
+        input_list = [x, y]
 
         while i < len(module)+1:
             if opcode(module[i]) == 1:
@@ -176,10 +176,57 @@ class TractorBeam:
 
 
 # part 1
+path = [[' ']*50 for _ in range(50)]
 affected = 0
-for y in range(50):
-    for x in range(50):
-        if TractorBeam().run(y, x):
-            affected += 1
+first_beam_x = first_beam_y = 0
+y = x = x_ref = 0
+while y < 50:
+    if not TractorBeam().check(y, x):
+        if x >= 50:
+            x = x_ref
+        else:    
+            x += 1
+            continue
+    else:
+        if not (first_beam_x and first_beam_y) and (y, x) != (0, 0):
+            first_beam_x = x
+            first_beam_y = y
+        affected += 1
+        x_ref = x
+        x += 1
+        while x < 50:
+            if TractorBeam().check(y, x):
+                affected += 1
+            else:
+                x = x_ref
+                break
+            x += 1
+    y += 1
 
 print(f'Part 1: {affected}') # 183
+
+
+# part 2
+found = False
+x = x_ref = first_beam_x
+y = first_beam_y
+while not found:
+    if not TractorBeam().check(y, x):
+        x += 1
+        continue
+    else:
+        x_ref = x
+        x += 1
+        while not found:
+            if TractorBeam().check(y, x):
+                if TractorBeam().check(y, x+99) and TractorBeam().check(y+99, x):
+                    found = True
+                    continue
+            else:
+                x = x_ref
+                break
+            x += 1
+    if not found:
+        y += 1
+
+print(f'Part 2: {x*10000+y}') # 11221248
