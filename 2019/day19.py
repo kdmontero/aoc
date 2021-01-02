@@ -207,26 +207,17 @@ print(f'Part 1: {affected}') # 183
 
 
 # part 2
-found = False
-x = x_ref = first_beam_x
+x = first_beam_x
 y = first_beam_y
-while not found:
-    if not TractorBeam().check(y, x):
-        x += 1
-        continue
-    else:
-        x_ref = x
-        x += 1
-        while not found:
-            if TractorBeam().check(y, x):
-                if TractorBeam().check(y, x+99) and TractorBeam().check(y+99, x):
-                    found = True
-                    continue
-            else:
-                x = x_ref
-                break
-            x += 1
-    if not found:
+while True:
+    if TractorBeam().check(y, x):
+        if x < 100 or y < 100:
+            pass
+        elif TractorBeam().check(y-99, x) and TractorBeam().check(y-99, x+99):
+            y -= 99
+            break
         y += 1
+    else:
+        x += 1
 
 print(f'Part 2: {x*10000+y}') # 11221248
