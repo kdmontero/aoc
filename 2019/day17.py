@@ -13,15 +13,21 @@ class ASCII:
         self.program = intcode[:]
         self.camera = ''
     
+    def reset(self):
+        self.relbase = 0
+        self.index = 0
+        self.program = intcode[:]
+        self.camera = ''
+
     @property
     def scaffold(self):
         return [list(line) for line in self.camera.strip().splitlines()]
 
     def run(self, main=None, A=None, B=None, C=None, show_visualization=False):
-        opcode = lambda num: int(str(num)[-2:])
-        mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
-        mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
-        mode3 = lambda num: int(str(num)[-5]) if len(str(num))>=5 else 0
+        opcode = lambda num: num % 100
+        mode1 = lambda num: divmod(num%1000, 100)[0] if num >= 100 else 0
+        mode2 = lambda num: divmod(num%10000, 1000)[0] if num >= 1000 else 0
+        mode3 = lambda num: divmod(num%100000, 10000)[0] if num >= 10000 else 0
 
         if main == A == B == C == None:
             input_list = []
@@ -202,22 +208,108 @@ class ASCII:
 
 
 # part 1
-bot1 = ASCII()
-bot1.run()
+bot = ASCII()
+bot.run()
 total = 0
-for y, line in enumerate(bot1.scaffold):
-    if y in {0, len(bot1.scaffold)-1}:
+for y, line in enumerate(bot.scaffold):
+    if y in {0, len(bot.scaffold)-1}:
         continue
     for x, char in enumerate(line):
         if x in {0, len(line)-1}:
             continue
-        if char == bot1.scaffold[y-1][x] == bot1.scaffold[y+1][x] == bot1.scaffold[y][x-1] == bot1.scaffold[y][x+1] == '#':
+        if char == bot.scaffold[y-1][x] == bot.scaffold[y+1][x] == bot.scaffold[y][x-1] == bot.scaffold[y][x+1] == '#':
             total += (x * y)
 
 print(f'Part 1: {total}') # 5788
 
 
 # part 2
+class Map:
+    def __init__(self, grid):
+        self.grid = grid
+        self.x = 0
+        self.y = 0
+        self.direction = '^'
+        self.steps = 0
+        self.movement = []
+        self.is_halted = False
+    
+    def find_position(self):
+        '''Finds current position and create a dict of the scaffold'''
+        self.scaffold = set()
+        for y in range(len(self.grid)):
+            for x in range(len(self.grid[0])):
+                if self.grid[y][x] in {'^', 'v', '<', '>', '#'}:
+                    self.scaffold.add((y, x))
+                if self.grid[y][x] in {'^', 'v', '<', '>'}:
+                    self.x = x
+                    self.y = y
+                    self.direction = self.grid[y][x]
+    
+    def move_front(self):
+        if self.direction == '^':
+            self.y -= 1
+        elif self.direction == 'v':
+            self.y += 1
+        elif self.direction == '<':
+            self.x -= 1
+        elif self.direction == '>':
+            self.x += 1
+
+    def turn(self):
+        if self.direction == '^':
+            if (self.y, self.x-1) in self.scaffold:
+                self.direction = '<'
+                self.movement.append('L')
+            elif (self.y, self.x+1) in self.scaffold:
+                self.direction = '>'
+                self.movement.append('R')
+            else:
+                self.is_halted = True
+        elif self.direction == 'v':
+            if (self.y, self.x-1) in self.scaffold:
+                self.direction = '<'
+                self.movement.append('R')
+            elif (self.y, self.x+1) in self.scaffold:
+                self.direction = '>'
+                self.movement.append('L')
+            else:
+                self.is_halted = True
+
+        elif self.direction == '<':
+            if (self.y-1, self.x) in self.scaffold:
+                self.direction = '^'
+                self.movement.append('R')
+            elif (self.y+1, self.x) in self.scaffold:
+                self.direction = 'v'
+                self.movement.append('L')
+            else:
+                self.is_halted = True
+        elif self.direction == '>':
+            if (self.y-1, self.x) in self.scaffold:
+                self.direction = '^'
+                self.movement.append('L')
+            elif (self.y+1, self.x) in self.scaffold:
+                self.direction = 'v'
+                self.movement.append('R')
+            else:
+                self.is_halted = True
+    
+    def can_move_front(self):
+        if self.direction == '^' and (self.y-1, self.x) in self.scaffold:
+            return True
+        elif self.direction == 'v' and (self.y+1, self.x) in self.scaffold:
+            return True
+        elif self.direction == '<' and (self.y, self.x-1) in self.scaffold:
+            return True
+        elif self.direction == '>' and (self.y, self.x+1) in self.scaffold:
+            return True
+        else:
+            if self.steps:    
+                self.movement.append(str(self.steps))
+                self.steps = 0
+            return False
+
 def convert_to_input(routine):
     input_list = []
     for i in list(routine):
@@ -225,26 +317,71 @@ def convert_to_input(routine):
     input_list += [10]
     return input_list
 
-bot2 = ASCII()
-bot2.program[0] = 2
+def compress_string(string, patterns):
+    if len(patterns) == 3:
+        if string == '':
+            return patterns
+        else:
+            return False
+    else:
+        for i in range(min(20, len(string))):
+            new_str = string.replace(string[:i+1],'')
+            patterns[string[:i+1]] = len(patterns)
+            check_pattern = compress_string(new_str, patterns)
+            if not check_pattern:
+                del patterns[string[:i+1]]
+                continue
+            else:
+                return check_pattern
 
-M = 'A,B,A,B,C,B,C,A,B,C'
-A = 'R,4,R,10,R,8,R,4'
-B = 'R,10,R,6,R,4'
-C = 'R,4,L,12,R,6,L,12'
+bot_map = Map(bot.scaffold)
+bot_map.find_position()        
 
-main = convert_to_input(M)
+while not bot_map.is_halted:
+    if bot_map.can_move_front():
+        bot_map.move_front()
+        bot_map.steps += 1
+    else:
+        bot_map.turn()
+
+legend = {
+    0: 'A',
+    1: 'B',
+    2: 'C'
+}
+
+movements = ','.join(bot_map.movement) + ','
+patterns = compress_string(movements, {})
+main = ''
+while movements:
+    for pattern in patterns:
+        if movements.startswith(pattern):
+            main += legend[patterns[pattern]] + ','
+            movements = movements[len(pattern):]
+main = main.strip(',')
+
+for pattern, function in patterns.items():
+    if function == 0:
+        A = pattern.strip(',')
+    elif function == 1:
+        B = pattern.strip(',')
+    elif function == 2:
+        C = pattern.strip(',')
+
+main_routine = convert_to_input(main)
 pattern_A = convert_to_input(A)
 pattern_B = convert_to_input(B)
 pattern_C = convert_to_input(C)
 show_visualization = False # change this to see the robot's path
 
-dust = bot2.run(main, pattern_A, pattern_B, pattern_C, show_visualization)
+bot.reset()
+bot.program[0] = 2
+dust = bot.run(main_routine, pattern_A, pattern_B, pattern_C, show_visualization)
 
 if show_visualization:
     print(f'Part 1: {total}') # 5788
 print(f'Part 2: {dust}') # 648545
-print(f'Main Pattern: {M}')
+print(f'Main Pattern: {main}')
 print(f'Pattern A: {A}')
 print(f'Pattern B: {B}')
 print(f'Pattern C: {C}')
