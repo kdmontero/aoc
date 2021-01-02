@@ -38,10 +38,10 @@ class RepairDroid:
         return moveset[self.direction]
 
     def check(self, command):
-        opcode = lambda num: int(str(num)[-2:])
-        mode1 = lambda num: int(str(num)[-3]) if len(str(num))>=3 else 0
-        mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
-        mode3 = lambda num: int(str(num)[-5]) if len(str(num))>=5 else 0
+        opcode = lambda num: num % 100
+        mode1 = lambda num: divmod(num%1000, 100)[0] if num >= 100 else 0
+        mode2 = lambda num: divmod(num%10000, 1000)[0] if num >= 1000 else 0
+        mode3 = lambda num: divmod(num%100000, 10000)[0] if num >= 10000 else 0
 
         i = self.index
         module = self.program
@@ -306,7 +306,6 @@ class RepairDroid:
                 self.print_maze()
                 time.sleep(0.015)
             if stop_when_found and self.found:
-                print(self.x, self.y)
                 break
 
 # part 1
@@ -316,7 +315,7 @@ droid.explore()
 # of the droid relative to the whole maze 
 droid.set_offset_range()
 
-show_part_1 = True # toogle here to see animation
+show_part_1 = False # toogle here to see animation
 droid.y, droid.x = droid.y_offset, droid.x_offset
 droid.reset_steps()
 droid.program = intcode[:] # return to original starting point
@@ -326,7 +325,7 @@ print(f'Part 1: {oxygen_steps}')
 
 
 # part 2
-show_part_2 = True # toogle here to see animation
+show_part_2 = False # toogle here to see animation
 droid.reset_steps()
 droid.explore(show_part_2)
 if show_part_2:
