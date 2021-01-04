@@ -1,24 +1,40 @@
+import json
+
 with open('day12.txt') as f:
-    doc = f.read().strip()
+    doc = json.loads(f.read())
 
 # part 1
-i = 0
-cont = False
-total = 0
-while i < len(doc):
-    if not cont:
-        if doc[i].isdigit():
-            if doc[i-1] == '-':
-                current = '-' + doc[i]
-            else:
-                current = doc[i]
-            cont = True
-    else:
-        if doc[i].isdigit():
-            current += doc[i]
-        else:
-            total += int(current)
-            cont = False
-    i += 1
+def get_sum1(obj):
+    if isinstance(obj, int):
+        return obj
+    
+    elif isinstance(obj, list):
+        return sum(get_sum1(num) for num in obj)
+    
+    elif isinstance(obj, str):
+        return 0
+    
+    elif isinstance(obj, dict):
+        return sum(get_sum1(num) for num in obj.keys()) + sum(get_sum1(num) for num in obj.values())
 
-print(f'Part 1: {total}') # 111754
+print(f'Part 1: {get_sum1(doc)}') # 111754
+
+
+# part 2
+def get_sum2(obj):
+    if isinstance(obj, int):
+        return obj
+    
+    elif isinstance(obj, list):
+        return sum(get_sum2(num) for num in obj)
+    
+    elif isinstance(obj, str):
+        return 0
+    
+    elif isinstance(obj, dict):
+        if 'red' in obj.values():
+            return 0
+        else:
+            return sum(get_sum2(num) for num in obj.keys()) + sum(get_sum2(num) for num in obj.values())
+
+print(f'Part 2: {get_sum2(doc)}') # 65402
