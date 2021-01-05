@@ -26,10 +26,10 @@ class Arcade:
             for _ in range(Arcade.board_height)]
 
     def run(self, show_animation=False):
-        opcode = lambda num: num % 100
-        mode1 = lambda num: divmod(num%1000, 100)[0] if num >= 100 else 0
-        mode2 = lambda num: divmod(num%10000, 1000)[0] if num >= 1000 else 0
-        mode3 = lambda num: divmod(num%100000, 10000)[0] if num >= 10000 else 0
+        opcode = lambda num: num%100
+        mode1 = lambda num: num%1000 // 100 if num >= 100 else 0
+        mode2 = lambda num: num%10000 // 1000 if num >= 1000 else 0
+        mode3 = lambda num: num%100000 // 10000 if num >= 10000 else 0
 
         char = {
             0: Arcade.SPACE,

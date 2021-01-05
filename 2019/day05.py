@@ -7,8 +7,8 @@ def run(program, input_num):
     # mode2 = lambda num: int(str(num)[-4]) if len(str(num))>=4 else 0
 
     opcode = lambda num: num%100
-    mode1 = lambda num: divmod(num%1000, 100)[0] if num >= 100 else 0
-    mode2 = lambda num: divmod(num%10000, 1000)[0] if num >= 1000 else 0
+    mode1 = lambda num: num%1000 // 100 if num >= 100 else 0
+    mode2 = lambda num: num%10000 // 1000 if num >= 1000 else 0
 
     i=0
     while i < len(program)+1:
