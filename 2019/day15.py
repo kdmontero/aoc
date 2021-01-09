@@ -1,5 +1,6 @@
 import os
 import time
+import copy
 
 with open('day15.txt') as f:
     intcode = [int(num) for num in f.read().split(',')]
@@ -14,28 +15,16 @@ class RepairDroid:
 
     def __init__(self):
         self.relbase = 0
-        self.found = None # steps it take to found the oxygen from initial position
+        self.oxygen_steps = 0
         self.program = intcode[:]
         self.min_x = self.min_y = 0
-        self.max_x = self.max_y = 1
+        self.max_x = self.max_y = 0
         self.index = 0
         self.x = 0
         self.y = 0
-        self.map = {(self.y, self.x): 0} # dict of no. of steps
-        self.direction = 'UP'
+        self.map = {(0, 0): [RepairDroid.START, 0]} # dict char and steps
         self.steps = 0
-        self.maze = [[' ']*50 for _ in range(50)]
-        self.maze[self.y][self.x] = RepairDroid.START
-
-    @property
-    def next_move(self):
-        moveset = {
-            'UP': 1,
-            'DOWN': 2,
-            'LEFT': 3,
-            'RIGHT': 4
-        }
-        return moveset[self.direction]
+        self.moves = []
 
     def check(self, command):
         opcode = lambda num: num%100
@@ -197,147 +186,148 @@ class RepairDroid:
                 return
             else:
                 print("Program is not working")
-                return 
+                return
 
-    def turn_CW(self):
-        if self.direction == 'UP':
-            self.direction = 'RIGHT'
-        elif self.direction == 'DOWN':
-            self.direction = 'LEFT'
-        elif self.direction == 'LEFT':
-            self.direction = 'UP'
-        elif self.direction == 'RIGHT':
-            self.direction = 'DOWN'
-        return
-
-    def turn_CCW(self):
-        if self.direction == 'UP':
-            self.direction = 'LEFT'
-        elif self.direction == 'DOWN':
-            self.direction = 'RIGHT'
-        elif self.direction == 'LEFT':
-            self.direction = 'DOWN'
-        elif self.direction == 'RIGHT':
-            self.direction = 'UP'
-        return
-
-    def is_right_wall(self):
-        if any((
-            self.direction == 'UP' and self.maze[self.y][self.x+1] == RepairDroid.WALL,
-            self.direction == 'DOWN' and self.maze[self.y][self.x-1] == RepairDroid.WALL,
-            self.direction == 'RIGHT' and self.maze[self.y+1][self.x] == RepairDroid.WALL,
-            self.direction == 'LEFT' and self.maze[self.y-1][self.x] == RepairDroid.WALL
-        )):
-            return True
-        return False
+    @property
+    def maze(self):
+        x_offset = self.max_x-self.min_x
+        y_offset = self.max_y-self.min_y
+        maze = [[' ']*(x_offset+1) for _ in range((y_offset+1))]
+        for (y, x), (char, _) in self.map.items():
+            if y == self.y and x == self.x:
+                maze[y-self.min_y][x-self.min_x] = RepairDroid.DROID
+            else:
+                maze[y-self.min_y][x-self.min_x] = char
+        return maze
 
     def print_maze(self):
         os.system("clear")
         for line in self.maze:
             print(''.join(line))
+        time.sleep(0.02)
 
-    def reset_steps(self):
-        self.maze = [[' ']*(self.x_range) for _ in range(self.y_range)]
-        self.steps = 0
-        self.map = {(self.y, self.x): 0} 
-        self.maze[self.y][self.x] = RepairDroid.START
+    def turn_back(self): # turn back 1 step
+        previous_move = self.moves.pop()
+        if previous_move == 1:
+            move = 2
+            self.y += 1
+        elif previous_move == 2:
+            move = 1
+            self.y -= 1
+        elif previous_move == 3:
+            move = 4
+            self.x += 1
+        elif previous_move == 4:
+            move = 3
+            self.x -= 1
+        return move
 
-    def set_offset_range(self):
-        self.x_offset = -self.min_x
-        self.y_offset = -self.min_y
-        self.x_range = self.max_x - self.min_x + 1
-        self.y_range = self.max_y - self.min_y + 1
+    def all_n_visited(self):
+        if all((
+            (self.y+1, self.x) in self.map,
+            (self.y-1, self.x) in self.map,
+            (self.y, self.x+1) in self.map,
+            (self.y, self.x-1) in self.map
+        )):
+            return True
+        return False
 
-    def explore(self, show_animation=False, stop_when_found=False):
-        i = 0
-        self.found = None
-        while i < 3000:
-            i += 1
-            self.min_y = min(self.y-1, self.min_y)
-            self.min_x = min(self.x-1, self.min_x)
-            self.max_y = max(self.y+1, self.max_y)
-            self.max_x = max(self.x+1, self.max_x)
-            if not self.is_right_wall():
-                self.turn_CW()
-            command = self.next_move
+    def explore(self, show_animation=False):
+        mapped = False
+        while not mapped:
+            if (self.y-1, self.x) not in self.map:
+                command = 1
+                self.y -= 1
+                self.min_y = min(self.min_y, self.y)
+            elif (self.y, self.x+1) not in self.map:
+                command = 4
+                self.x += 1
+                self.max_x = max(self.max_x, self.x)
+            elif (self.y+1, self.x) not in self.map:
+                command = 2
+                self.y += 1
+                self.max_y = max(self.max_y, self.y)
+            elif (self.y, self.x-1) not in self.map:
+                command = 3
+                self.x -= 1
+                self.min_x = min(self.min_x, self.x)
+            else:
+                while self.all_n_visited():
+                    if self.moves:
+                        moveback = self.turn_back()
+                        self.check(moveback)
+                        self.steps = self.map[(self.y, self.x)][1]
+                        if show_animation:
+                            self.print_maze()
+                    else:
+                        mapped = True
+                        break
+                continue
+
+            self.moves.append(command)
             status = self.check(command)
             if status == 0:
-                if command == 1:
-                    self.maze[self.y-1][self.x] = RepairDroid.WALL
-                elif command == 2:
-                    self.maze[self.y+1][self.x] = RepairDroid.WALL
-                elif command == 3:
-                    self.maze[self.y][self.x-1] = RepairDroid.WALL
-                elif command == 4:
-                    self.maze[self.y][self.x+1] = RepairDroid.WALL
-                self.turn_CCW()
+                self.map[(self.y, self.x)] = [RepairDroid.WALL, 'INF']
+                self.turn_back()
             elif status == 1:
-                if self.maze[self.y][self.x] not in {RepairDroid.OXYGEN, RepairDroid.START}:
-                    self.maze[self.y][self.x] = RepairDroid.PATH
-                if command == 1:
-                    self.y -= 1
-                elif command == 2:
-                    self.y += 1
-                elif command == 3:
-                    self.x -= 1
-                elif command == 4:
-                    self.x += 1
-                if (self.y, self.x) not in self.map:
-                    self.steps += 1
-                    self.map[(self.y, self.x)] = self.steps
-                else:
-                    self.steps = self.map[(self.y, self.x)]
-                if self.maze[self.y][self.x] not in {RepairDroid.OXYGEN, RepairDroid.START}:
-                    self.maze[self.y][self.x] = RepairDroid.DROID
-            elif status == 2:
-                self.maze[self.y][self.x] = RepairDroid.PATH
-                if command == 1:
-                    self.y -= 1
-                elif command == 2:
-                    self.y += 1
-                elif command == 3:
-                    self.x -= 1
-                elif command == 4:
-                    self.x += 1
                 self.steps += 1
-                self.maze[self.y][self.x] = RepairDroid.OXYGEN
-                self.found = self.steps
+                self.map[(self.y, self.x)] = [RepairDroid.PATH, self.steps]
+            elif status == 2:
+                self.steps += 1
+                self.map[(self.y, self.x)] = [RepairDroid.OXYGEN, self.steps]
+                self.oxygen_steps = self.steps
+
             if show_animation:
                 self.print_maze()
-                time.sleep(0.015)
-            if stop_when_found and self.found:
-                break
+
 
 # part 1
+show_animation = True #  CHANGE HERE TO SEE THE ANIMATION
 droid = RepairDroid()
-droid.explore()
-# Find first the offset since we do not know the starting position
-# of the droid relative to the whole maze 
-droid.set_offset_range()
+droid.explore(show_animation)
+droid.x, droid.y = 0, 0
 
-show_part_1 = False # toogle here to see animation
-droid.y, droid.x = droid.y_offset, droid.x_offset
-droid.reset_steps()
-droid.program = intcode[:] # return to original starting point
-droid.explore(show_part_1, True)
-oxygen_steps = droid.found
-print(f'Part 1: {oxygen_steps}')
+visited = {}
+stack = [(0, 0, 0)]
+while True:
+    y, x, steps = stack.pop()
+    droid.y, droid.x = y, x
+    if (y, x) not in visited:
+        visited[(y,x)] = steps
+    else:
+        continue
+
+    if show_animation:
+        droid.print_maze()
+
+    if droid.map[(y, x)][0] == RepairDroid.OXYGEN:
+        oxygen_steps = steps
+        break
+    neighbors = [(y+1, x), (y-1, x), (y, x+1), (y, x-1)]
+    for neighbor in neighbors:
+        if (droid.map[neighbor][0] in {RepairDroid.PATH, RepairDroid.OXYGEN} and
+            neighbor not in visited):
+                stack.append((*neighbor, steps+1))
 
 
 # part 2
-show_part_2 = False # toogle here to see animation
-droid.reset_steps()
-droid.explore(show_part_2)
-if show_part_2:
-    print(f'Part 1: {oxygen_steps}')
-print(f'Part 2: {max(droid.map.values())}')
+queue = [(droid.y, droid.x)]
+time_filled = 0
+while queue:
+    temp_queue = []
+    for y, x in queue:
+        droid.y, droid.x = y, x
+        droid.map[(y,x)][0] = RepairDroid.OXYGEN
+        neighbors = [(y+1, x), (y-1, x), (y, x+1), (y, x-1)]
+        for neighbor in neighbors:
+            if droid.map[neighbor][0] in {RepairDroid.PATH, RepairDroid.START}:
+                temp_queue.append(neighbor)
+    if show_animation:
+        droid.print_maze()
+    
+    queue = temp_queue
+    if temp_queue:
+        time_filled += 1
 
-
-# # Part 1 animation
-# droid = RepairDroid()
-# droid.explore()
-# droid.set_offset_range()
-# droid.y, droid.x = droid.y_offset, droid.x_offset
-# droid.reset_steps()
-# droid.program = intcode[:] # return to original starting point
-# droid.explore(True)
+print(f'Part 1: {oxygen_steps}')
+print(f'Part 2: {time_filled}')
