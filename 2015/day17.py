@@ -6,18 +6,17 @@ with open('day17.txt') as f:
 REFRIGERATOR = 150
 counter = collections.Counter()
 
-def count_containers(size, addends, liters):
-    if size == 0:
+def count_containers(target, addends, remaining):
+    if target == 0:
         counter[len(addends)] += 1
         return 1
-    elif size < 0:
+    elif target < 0:
         return 'Invalid'
     else:
         total = 0
-        for i, cont in enumerate(liters):
-            count = count_containers(size-cont, addends+[cont], liters[i+1:])
+        for i, cont in enumerate(remaining):
+            count = count_containers(target-cont, addends+[cont], remaining[i+1:])
             if count == 'Invalid':
-                addends.pop()
                 break
             total += count    
         return total
