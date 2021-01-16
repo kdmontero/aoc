@@ -15,11 +15,11 @@ def sum_factors1(num):
                 total += num//x + x
     return total
 
-num1 = 1
-while sum_factors1(num1)*10 < INPUT:
-    num1 += 1
+house1 = 1
+while sum_factors1(house1)*10 < INPUT:
+    house1 += 1
 
-print(f'Part 1: {num1}') # 831600
+print(f'Part 1: {house1}') # 831600
 
 
 # part 2
@@ -49,10 +49,10 @@ def sum_factors2(num):
     
     return total
 
-num2 = num1 # start with the part 1 ans for faster iteration
-xa = sum_factors2(num2)*11
-while xa < INPUT:
-    num2 += 10 # educated guess of 10 increments
-    xa = sum_factors2(num2)*11
+house2 = house1 # start with the part 1 ans for faster iteration
+gifts = sum_factors2(house2)*11
+while gifts < INPUT:
+    house2 += 10 # every increase in max gifts occurs in multiples of 10
+    gifts = sum_factors2(house2)*11
 
-print(f'Part 2: {num2}') # 884520
+print(f'Part 2: {house2}') # 884520
