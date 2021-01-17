@@ -25,9 +25,6 @@ class Character:
             self.damage += ring2.damage_added
             self.defense += ring2.defense_added
             self.gold_spent += ring2.cost
-    
-    def attack(self, other):
-        other.hp -= max(1, self.damage - other.defense)
 
 class Weapon:
     def __init__(self, cost, damage_added):
