@@ -33,11 +33,13 @@ while queue:
     low_bot = ins[b_bot][0]
     high_bot = ins[b_bot][1]
     bot[b_bot] = []
+
     if low_bot not in bot:
         bot[low_bot] = [low_val]
     else:
         bot[low_bot].append(low_val)
         queue.append(low_bot)
+
     if high_bot not in bot:
         bot[high_bot] = [high_val]
     else:
