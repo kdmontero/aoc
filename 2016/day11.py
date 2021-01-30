@@ -4,6 +4,7 @@ import copy
 with open('day11.txt') as f:
     bldg = [None] * 4 
     total_obj1 = 0
+    elements = []
     for line in f.read().splitlines():
         if 'first' in line:
             level = 0
@@ -19,30 +20,35 @@ with open('day11.txt') as f:
             continue
         
         *_, objects = line.split(' ', 5)
-        objects = (obj for obj in 
+        objects = (obj.replace(' ', '-') for obj in 
                 objects.replace(',', '').replace(' and', '').split(' a '))
         
         final_obj = []
         for obj in objects:
+            element = obj.split('-')[0]
+            if element not in elements:
+                elements.append(element)
+            value = elements.index(element) + 1
             if 'generator' in obj:
-                final_obj.append(obj.split(' ')[0] + '_G')
+                final_obj.append(value)
             elif 'microchip' in obj:
-                final_obj.append(obj.split('-')[0] + '_M')
+                final_obj.append(-value)
         
         bldg[level] = tuple(sorted(final_obj))
         total_obj1 += len(final_obj)
 
     bldg = tuple(bldg)
+    print(*bldg, sep='\n')
 
 # part 1
 def check_floor(objects):
     microchips = set()
     generators = set()
     for obj in objects:
-        if obj.endswith('M'):
-            microchips.add(obj.rstrip('_M'))
-        elif obj.endswith('G'):
-            generators.add(obj.rstrip('_G'))
+        if obj > 0:
+            microchips.add(abs(obj))
+        elif obj < 0:
+            generators.add(abs(obj))
     if not generators:
         return True
 
@@ -60,13 +66,40 @@ def empty_floors_below(level, bldg):
 def all_complete_pair(objects):
     if len(objects) % 2 == 1 or len(objects) < 4:
         return False
-    for i in range(0, len(objects), 2):
-        if objects[i][:-1] != objects[i+1][:-1]:
+    for i in range(0, len(objects)//2):
+        if objects[i] == -objects[-(i+1)]:
             return False
     return True
 
+(
+    ('M',1,1,2), ('G',3,4,5),
+    ('M', 3,0), ('G', 2,3)
+)
+
+'''
+def find_other_pair(obj, bldg):
+    for floor in bldg:
+        if -obj in floor:
+            return floor
+
+def get_state(bldg):
+    state = []
+    for floor in bldg:
+        generators = []
+        microchips = []
+        for obj in floor:
+            if obj > 0:
+                generators.append(find_other_pair(obj, bldg))
+            elif obj < 0:
+                microchips.append(find_other_pair(obj, bldg))
+        state.append(('G',) + tuple(sorted(generators)))
+        state.append(('M',) + tuple(sorted(microchips)))
+    return tuple(state)
+'''
+
 def find_optimal_steps(bldg, total_obj):
     queue = [[bldg, 0]]
+    # seen = {(get_state(bldg), 0)}
     seen = {(bldg, 0)}
     steps = 0
     while True:
@@ -102,19 +135,23 @@ def find_optimal_steps(bldg, total_obj):
                     temp_bldg[level + move] = tuple(
                         sorted(temp_bldg[level + move]))
                     temp_bldg = tuple(temp_bldg)
+                    # bldg_state = get_state(temp_bldg)
 
                     if all((
                         check_floor(temp_bldg[level]),
                         check_floor(temp_bldg[level + move]),
+                        # (bldg_state, level + move) not in seen,
                         (temp_bldg, level + move) not in seen,
                         not(empty_floors_below(level, temp_bldg) and move == -1)
                     )):
                         temp.append([temp_bldg, level + move])
+                        # seen.add((bldg_state, level + move))
                         seen.add((temp_bldg, level + move))
 
         else:
             queue = temp
             steps += 1
+            print(f'{steps} {len(queue)}')
             continue
         
         return steps
@@ -123,11 +160,12 @@ print(f'Part 1: {find_optimal_steps(bldg, total_obj1)}') # 31
 
 
 # part 2
-new_items = ['elerium_G', 'elerium_M', 'dilithium_G', 'dilithium_M']
+new_items = [len(elements) + 1, len(elements) + 2, -(len(elements) + 1), -(len(elements) + 2)]
 new_first_flr = tuple(sorted(list(bldg[0]) + new_items))
 bldg = list(bldg)
 bldg[0] = new_first_flr
 bldg = tuple(bldg)
+print(*bldg, sep='\n')
 total_obj2 = total_obj1 + 4
 
 print(f'Part 2: {find_optimal_steps(bldg, total_obj2)}') # 55
