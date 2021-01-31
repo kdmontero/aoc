@@ -19,10 +19,9 @@ def reg_a(reg):
 
         elif ins[i][0] == 'cpy':
             if isinteger(ins[i][1]):
-                val = int(ins[i][1])
+                reg[ins[i][2]] = int(ins[i][1])
             else:
-                val = reg[ins[i][1]]
-            reg[ins[i][2]] = val
+                reg[ins[i][2]] = reg[ins[i][1]]
 
         elif ins[i][0] == 'jnz':
             if isinteger(ins[i][1]):
@@ -31,14 +30,12 @@ def reg_a(reg):
                 val = reg[ins[i][1]]
             if val != 0:
                 if isinteger(ins[i][2]):
-                    jump = int(ins[i][2])
+                    i += int(ins[i][2])
                 else:
-                    jump = reg[ins[i][2]]
-                i += jump
+                    i += reg[ins[i][2]]
                 continue
 
         i += 1
-
     return reg['a']
 
 print(f"Part 1: {reg_a({'a': 0, 'b': 0, 'c': 0, 'd': 0})}") # 318020 - part 1
