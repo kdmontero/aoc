@@ -71,11 +71,6 @@ def all_complete_pair(objects):
             return False
     return True
 
-(
-    ('M',1,1,2), ('G',3,4,5),
-    ('M', 3,0), ('G', 2,3)
-)
-
 '''
 def find_other_pair(obj, bldg):
     for floor in bldg:
