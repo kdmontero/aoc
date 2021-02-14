@@ -1,8 +1,9 @@
 import time
+import os
 
 INPUT = 1350
 TARGET = (31, 39)
-
+DELAY = 0.1
 
 def is_space(x, y):
     num = x*x + 3*x + 2*x*y + y + y*y + INPUT
@@ -21,49 +22,70 @@ def get_neighbors(x, y):
         n.append((x, y+dy))
     return n
 
-def print_maze(maze):
-    SPACE = ' '
+def get_char(x, y, maze):
+    SPACE = '.'
     WALL = '#'
-    UNDEFINED = '*'
+    UNDEFINED = ' '
+    START = 'S'
+    END = 'O'
 
-    length = max(maze, key=lambda a:a[0])[0] + 1
-    width = max(maze, key=lambda a:a[1])[1] + 1
-    grid = [[UNDEFINED] * width for _ in range(length)]
-    for (x, y), space in maze.items():
-        if space:
-            grid[x][y] = SPACE
-        else:
-            grid[x][y] = WALL
+    if (x, y) == (1, 1):
+        return START
+    elif (x, y) == TARGET:
+        return END
+    elif (x, y) not in maze:
+        return UNDEFINED
+    elif maze[(x, y)]:
+        return SPACE
+    else:
+        return WALL
 
-    for line in grid:
-        print(''.join(line))
+def print_maze(maze):
+    length = max(maze, key=lambda a:a[1])[1] + 1
+    width = max(maze, key=lambda a:a[0])[0] + 1
+    os.system("clear")
 
+    for y in range(length):
+        for x in range(width):
+            print(get_char(x, y, maze), end="")
+        print('')
+    
+    time.sleep(DELAY)
 
-queue = {(1,1)}
-maze = {}
-count = 0
-found = False
-steps = 0
+def solve(show):
+    queue = {(1,1)}
+    maze = {TARGET: True}
+    count = 0
+    found = False
+    steps = 0
 
-while queue and (not found or steps <= 50):
-    next_queue = set()
+    while queue and (not found or steps <= 50):
+        next_queue = set()
 
-    for node in queue:
-        if node == TARGET:
-            found = steps
+        for node in queue:
+            if node == TARGET:
+                found = steps
+            maze[node] = is_space(*node)
 
-        maze[node] = is_space(*node)
-        for n in get_neighbors(*node):
-            if n not in maze and is_space(*n):
-                next_queue.add(n)
+            for n in get_neighbors(*node):
+                if n not in maze or n == TARGET:
+                    if is_space(*n):
+                        next_queue.add(n)
+                    else:
+                        maze[n] = False
 
-    if steps <= 50:
-        count += len(next_queue)
-    queue = next_queue
-    steps += 1
-    continue
+        if show:
+            print_maze(maze)
 
+        if steps <= 50:
+            count += len(next_queue)
+        queue = next_queue
+        steps += 1
+
+    return found, count
+
+show = True
+found, count = solve(show)
 
 print(f'Part 1: {found}') # 94 - part 1
-
 print(f'Part 2: {count}') # 124 - part 2
