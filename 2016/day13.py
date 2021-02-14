@@ -84,7 +84,7 @@ def solve(show):
 
     return found, count
 
-show = True
+show = True # set to False to hide animation, True to otherwise
 found, count = solve(show)
 
 print(f'Part 1: {found}') # 94 - part 1
