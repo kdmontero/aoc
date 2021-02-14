@@ -3,7 +3,7 @@ import os
 
 INPUT = 1350
 TARGET = (31, 39)
-DELAY = 0.1
+DELAY = 0.05
 
 def is_space(x, y):
     num = x*x + 3*x + 2*x*y + y + y*y + INPUT
@@ -84,7 +84,7 @@ def solve(show):
 
     return found, count
 
-show = True # set to False to hide animation, True to otherwise
+show = True # set to False to hide animation, True for otherwise
 found, count = solve(show)
 
 print(f'Part 1: {found}') # 94 - part 1
