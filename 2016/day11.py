@@ -1,9 +1,9 @@
-from itertools import combinations
-import copy
+import itertools as it
+import heapq as hq
+import copy as cp
 
 with open('day11.txt') as f:
-    bldg = [None] * 4 
-    total_obj1 = 0
+    init_bldg = [None] * 4 
     elements = []
     for line in f.read().splitlines():
         if 'first' in line:
@@ -16,7 +16,7 @@ with open('day11.txt') as f:
             level = 3
         
         if 'nothing relevant' in line:
-            bldg[level] = ()
+            init_bldg[level] = ()
             continue
         
         *_, objects = line.split(' ', 5)
@@ -34,21 +34,65 @@ with open('day11.txt') as f:
             elif 'microchip' in obj:
                 final_obj.append(-value)
         
-        bldg[level] = tuple(sorted(final_obj))
-        total_obj1 += len(final_obj)
+        init_bldg[level] = tuple(sorted(final_obj))
 
-    bldg = tuple(bldg)
-    print(*bldg, sep='\n')
+    init_bldg = tuple(init_bldg)
+    # objects in the floor of init_bldg is represented by integers. Microchips
+    # are negative and Generators are positive. The pair has equal absolute
+    # values. The floor levels are arranged in ascending order
 
-# part 1
+
+class Building:
+    no_of_objects = 0
+    starting_score = 0
+
+    def __init__(self, bldg, elevator, steps):
+        self.bldg = bldg # tuple of tuples (floors)
+        self.elevator = elevator # index of the elevator index
+        self.steps = steps
+        self.score = Building.get_score(bldg)
+        self.g_cost = Building.starting_score - self.score
+        # g_cost is distance (heuristic) of the bldg to the starting bldg
+        self.h_cost = (Building.no_of_objects * 4) - self.score
+        # h_cost is distance (heuristic) of the bldg to the target bldg
+        self.f_cost = self.g_cost + self.h_cost
+
+    def get_score(bldg):
+        '''Returns the building score (heuristic value)'''
+        bldg_score = 0
+        for level, floor in enumerate(bldg):
+            bldg_score += (level + 1) * len(floor)
+        return bldg_score
+
+    def set_starting_score(init_bldg):
+        Building.starting_score = Building.get_score(init_bldg)
+
+    def set_no_of_objects(init_bldg):
+        Building.no_of_objects = sum(len(floor) for floor in init_bldg)
+
+    def __lt__(self, other):
+        if self.f_cost < other.f_cost:
+            return True
+        elif self.f_cost > other.f_cost:
+            return False
+        else:
+            if self.steps < other.steps:
+                return True
+            else:
+                return False
+
+
 def check_floor(objects):
+    '''Returns True if the floor setup is valid, otherwise False'''
+
     microchips = set()
     generators = set()
     for obj in objects:
-        if obj > 0:
+        if obj < 0:
             microchips.add(abs(obj))
-        elif obj < 0:
+        elif obj > 0:
             generators.add(abs(obj))
+
     if not generators:
         return True
 
@@ -57,110 +101,76 @@ def check_floor(objects):
     else:
         return True
 
-def empty_floors_below(level, bldg):
-    for floor in range(level):
-        if len(bldg[floor]) > 0:
-            return False
-    return True
 
-def all_complete_pair(objects):
-    if len(objects) % 2 == 1 or len(objects) < 4:
-        return False
-    for i in range(0, len(objects)//2):
-        if objects[i] == -objects[-(i+1)]:
-            return False
-    return True
+def a_star(init_bldg):
+    '''A-star algorithm to get the shortest path'''
 
-'''
-def find_other_pair(obj, bldg):
-    for floor in bldg:
-        if -obj in floor:
-            return floor
+    queue = [Building(init_bldg, 0, 0)]
+    seen = set()
 
-def get_state(bldg):
-    state = []
-    for floor in bldg:
-        generators = []
-        microchips = []
-        for obj in floor:
-            if obj > 0:
-                generators.append(find_other_pair(obj, bldg))
-            elif obj < 0:
-                microchips.append(find_other_pair(obj, bldg))
-        state.append(('G',) + tuple(sorted(generators)))
-        state.append(('M',) + tuple(sorted(microchips)))
-    return tuple(state)
-'''
-
-def find_optimal_steps(bldg, total_obj):
-    queue = [[bldg, 0]]
-    # seen = {(get_state(bldg), 0)}
-    seen = {(bldg, 0)}
-    steps = 0
     while True:
-        temp = []
-        while queue:
-            bldg, level = queue.pop()
+        cur_bldg = hq.heappop(queue)
+        bldg = cur_bldg.bldg
+        level = cur_bldg.elevator
+        steps = cur_bldg.steps
 
-            if len(bldg[3]) == total_obj:
-                break
-                
-            for move in [+1, -1]:
-                if level + move < 0 or level + move > 3:
-                    continue
-
-                if all_complete_pair(bldg[level]): # optimization for pairs
-                    optimal_indexes = [(0,), (0, 1), (0, 2), (1, 3)]
-                    items_to_bring = set()
-                    for indexes in optimal_indexes:
-                        items = ()
-                        for i in indexes:
-                            items += (bldg[level][i],)
-                        items_to_bring.add(items)
-                else:
-                    items_to_bring = set(combinations(bldg[level], 2)) | set(
-                        combinations(bldg[level], 1))
-
-                for items in items_to_bring:
-                    temp_bldg = list(copy.deepcopy(bldg))
-                    temp_bldg[level] = set(temp_bldg[level]) - set(items)
-                    temp_bldg[level] = tuple(sorted(temp_bldg[level]))
-                    temp_bldg[level + move] = set(
-                        temp_bldg[level + move]) | set(items)
-                    temp_bldg[level + move] = tuple(
-                        sorted(temp_bldg[level + move]))
-                    temp_bldg = tuple(temp_bldg)
-                    # bldg_state = get_state(temp_bldg)
-
-                    if all((
-                        check_floor(temp_bldg[level]),
-                        check_floor(temp_bldg[level + move]),
-                        # (bldg_state, level + move) not in seen,
-                        (temp_bldg, level + move) not in seen,
-                        not(empty_floors_below(level, temp_bldg) and move == -1)
-                    )):
-                        temp.append([temp_bldg, level + move])
-                        # seen.add((bldg_state, level + move))
-                        seen.add((temp_bldg, level + move))
-
-        else:
-            queue = temp
-            steps += 1
-            print(f'{steps} {len(queue)}')
-            continue
+        if cur_bldg.score == Building.no_of_objects * 4:
+            break
         
-        return steps
+        if (bldg, level) not in seen:
+            seen.add((bldg, level))
+        else:
+            continue
 
-print(f'Part 1: {find_optimal_steps(bldg, total_obj1)}') # 31
+        # get all the possible combinations of objects to bring
+        objects_to_bring = set(it.combinations(bldg[level], 2)) | set(
+            it.combinations(bldg[level], 1))
 
+        for move in [+1, -1]: # movement of the elevator 
+            if level + move < 0 or level + move > 3:
+                continue
 
+            for objects in objects_to_bring:
+                # remove the objects in the current floor
+                temp_bldg = list(cp.deepcopy(bldg))
+                temp_bldg[level] = set(temp_bldg[level]) - set(objects)
+                temp_bldg[level] = tuple(sorted(temp_bldg[level]))
+
+                # add the objects in the next floor
+                temp_bldg[level + move] = set(
+                    temp_bldg[level + move]) | set(objects)
+                temp_bldg[level + move] = tuple(
+                    sorted(temp_bldg[level + move]))
+                temp_bldg = tuple(temp_bldg)
+
+                # Add the Building instance to the queue if both the current
+                # and next floor are valid
+                if check_floor(temp_bldg[level]) and check_floor(
+                    temp_bldg[level + move]):
+                        valid_bldg = Building(temp_bldg, level+move, steps+1)
+                        hq.heappush(queue, valid_bldg)
+
+    return steps
+
+# part 1
+Building.set_starting_score(init_bldg)
+Building.set_no_of_objects(init_bldg)
+print(f'Part 1: {a_star(init_bldg)}') # 31
+
+            
 # part 2
-new_items = [len(elements) + 1, len(elements) + 2, -(len(elements) + 1), -(len(elements) + 2)]
-new_first_flr = tuple(sorted(list(bldg[0]) + new_items))
-bldg = list(bldg)
-bldg[0] = new_first_flr
-bldg = tuple(bldg)
-print(*bldg, sep='\n')
-total_obj2 = total_obj1 + 4
+new_items = [ 
+    len(elements) + 1,
+    len(elements) + 2,
+    -(len(elements) + 1),
+    -(len(elements) + 2)
+] # add the 4 objects by adding 2 positive and negative values to the init_bldg
 
-print(f'Part 2: {find_optimal_steps(bldg, total_obj2)}') # 55
+new_first_flr = tuple(sorted(list(init_bldg[0]) + new_items))
+init_bldg = list(init_bldg)
+init_bldg[0] = new_first_flr
+init_bldg2 = tuple(init_bldg)
+
+Building.set_starting_score(init_bldg2)
+Building.set_no_of_objects(init_bldg2)
+print(f'Part 2: {a_star(init_bldg2)}') # 55
