@@ -1,6 +1,7 @@
 import time
 import os
 
+print('Advent of Code 2016 - Day 13')
 INPUT = 1350
 TARGET = (31, 39)
 DELAY = 0.05
@@ -84,7 +85,7 @@ def solve(show):
 
     return found, count
 
-show = True # set to False to hide animation, True for otherwise
+show = False # set to False to hide animation, True for otherwise
 found, count = solve(show)
 
 print(f'Part 1: {found}') # 94 - part 1

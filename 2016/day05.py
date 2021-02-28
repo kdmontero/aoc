@@ -1,5 +1,6 @@
 import hashlib
 
+print('Advent of Code 2016 - Day 05')
 INPUT = 'ojvtpuvg'
 
 # part 1

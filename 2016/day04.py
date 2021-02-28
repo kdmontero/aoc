@@ -1,5 +1,6 @@
 from collections import Counter
 
+print('Advent of Code 2016 - Day 04')
 with open('day04.txt') as f:
     rooms = []
     for room in f.read().splitlines():

@@ -1,3 +1,4 @@
+print('Advent of Code 2016 - Day 10')
 with open('day10.txt') as f:
     ins = {}
     start = []

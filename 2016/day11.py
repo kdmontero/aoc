@@ -2,6 +2,7 @@ import itertools as it
 import heapq as hq
 import copy as cp
 
+print('Advent of Code 2016 - Day 11')
 with open('day11.txt') as f:
     init_bldg = [None] * 4 
     elements = []

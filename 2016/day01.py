@@ -1,5 +1,6 @@
 from collections import deque
 
+print('Advent of Code 2016 - Day 01')
 with open('day01.txt') as f:
     doc = f.read().split(', ')
 
@@ -34,5 +35,5 @@ for ins in doc:
         elif tuple(cur_pos) not in visited and not found:
             visited.add(tuple(cur_pos))
 
-print(abs(cur_pos[0]) + abs(cur_pos[1])) # 246 - part 1
-print(abs(found[0]) + abs(found[1])) # 124 - part 2
+print(f'Part 1: {abs(cur_pos[0]) + abs(cur_pos[1])}') # 246 - part 1
+print(f'Part 2: {abs(found[0]) + abs(found[1])}') # 124 - part 2

@@ -1,3 +1,4 @@
+print('Advent of Code 2016 - Day 18')
 with open('day18.txt') as f:
     row1 = f.readline()
 

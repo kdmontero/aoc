@@ -1,3 +1,4 @@
+print('Advent of Code 2016 - Day 03')
 with open('day03.txt') as f:
     given = f.read().splitlines()
     triangles1 = [[int(side) for side in tri.strip().split()]
