@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 02')
 def parse(text):
     lmin = text.split('-')[0]
     lmax = text.split('-')[1].split()[0]
@@ -17,5 +18,6 @@ for password in passwords:
     if bool(pw[int(lmin)-1] == letter) != bool(pw[int(lmax)-1] == letter): # XOR: bool(x) != bool(y)
         valid2 += 1
 
-print(f'Part 1: {valid1}') # 445
-print(f'Part 2: {valid2}') # 491
+print(f'Part 1: {valid1}') # 445 - part 1
+
+print(f'Part 2: {valid2}') # 491 - part 2

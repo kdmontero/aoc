@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 25')
 with open('day25.txt') as f:
     card_key, door_key = [int(num) for num in f.read().splitlines()]
 
@@ -26,6 +27,7 @@ elif loop == door_loop:
     encryption_key = transform(card_key, door_loop)
 
 print(f'Part 1: {encryption_key}') # 7936032
+
 
 # part 2
 print('Part 2: Complete all 49 stars in Advent of Code 2020')

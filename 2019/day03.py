@@ -1,3 +1,4 @@
+print('Advent of Code 2019 - Day 03')
 with open('day03.txt') as given:
     wires = given.read().split('\n')
 

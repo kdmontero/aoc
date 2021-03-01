@@ -1,5 +1,6 @@
 from collections import Counter
 
+print('Advent of Code 2020 - Day 24')
 with open('day24.txt') as f:
     instructions = [ins for ins in f.read().splitlines()]
 

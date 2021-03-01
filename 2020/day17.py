@@ -1,5 +1,6 @@
 from collections import Counter
 
+print('Advent of Code 2020 - Day 17')
 with open('day17.txt') as f:
     given_active_cubes = set()
     lines = f.read().split('\n')

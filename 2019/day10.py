@@ -3,6 +3,7 @@ import time
 from itertools import cycle
 from collections import deque
 
+print('Advent of Code 2019 - Day 10')
 class Asteroid:
     def __init__(self, ysym, xsym, slope, y0, x0, distance):
         self.ysym = ysym # symbol of y pos of asteroid relative to SS (space station)
@@ -64,7 +65,7 @@ for y_ss in range(len(space)):
 
 x_ss, y_ss = ss_position
 space[y_ss] = space[y_ss][:x_ss]+ss_char+space[y_ss][x_ss+1:]
-print(f'Part 1: {max_visible} at Space Station {ss_position}') # 214
+print(f'Part 1: {max_visible} (at Space Station {ss_position})') # 214
 
 
 # part 2
@@ -110,7 +111,8 @@ def start_giant_laser(space, target, asteroid_list):
         print(*space, sep="\n")
         time.sleep(0.05)
 
-# comment out below code to skip terminal animation
-start_giant_laser(space, target, in_order)
-print(f'Part 1: {max_visible} at Space Station {ss_position}') # 214
-print(f'Part 2: {coordinates[0]*100 + coordinates[1]}') # 502
+show = False # show animation if True, otherwise False
+if show:
+    start_giant_laser(space, target, in_order)
+    print(f'Part 1: {max_visible} at Space Station {ss_position}') # 214
+    print(f'Part 2: {coordinates[0]*100 + coordinates[1]}') # 502

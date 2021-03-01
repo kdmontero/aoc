@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+print('Advent of Code 2020 - Day 16')
 with open('day16.txt') as f:
     rules = {}
     nearby_tickets = []

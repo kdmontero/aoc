@@ -1,3 +1,4 @@
+print('Advent of Code 2017 - Day 01')
 with open('day01.txt') as f:
     digits = [int(n) for n in f.readline()]
 

@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 07')
 with open('day07.txt') as f:
     lines = f.read().split('\n')
     rules = {}

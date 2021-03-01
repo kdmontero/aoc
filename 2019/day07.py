@@ -1,5 +1,6 @@
 import itertools
 
+print('Advent of Code 2019 - Day 07')
 with open('day07.txt') as given:
     software = [int(num) for num in given.read().split(',')]
 

@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 04')
 with open('day04.txt') as given:
     passports = []
     pp_details = {}

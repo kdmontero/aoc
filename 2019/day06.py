@@ -1,3 +1,4 @@
+print('Advent of Code 2019 - Day 06')
 with open('day06.txt') as given:
 	data_map = {}
 	for line in given.read().split('\n'):

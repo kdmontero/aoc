@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+print('Advent of Code 2020 - Day 08')
 with open('day08.txt') as f:
     boot = [[ins[:3], int(ins[4:])] for ins in f.read().split('\n')]
 

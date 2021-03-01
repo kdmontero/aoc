@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 10')
 with open('day10.txt') as f:
     adapters = [int(i) for i in f.read().split('\n')]
 

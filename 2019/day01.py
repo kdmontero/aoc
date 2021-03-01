@@ -1,3 +1,4 @@
+print('Advent of Code 2019 - Day 01')
 with open('day01.txt') as given:
     masses = [int(line) for line in given.read().split('\n')]
 
@@ -21,4 +22,4 @@ for mass in masses:
         mass = fuel
     total += intcode_mass
 
-print(f'Part 2L {total}') # 4992931
+print(f'Part 2: {total}') # 4992931

@@ -1,5 +1,6 @@
 import itertools
 
+print('Advent of Code 2019 - Day 16')
 with open('day16.txt') as f:
     given = f.read()
     nums = [int(num) for num in given]

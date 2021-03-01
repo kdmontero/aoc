@@ -1,7 +1,10 @@
+print('Advent of Code 2020 - Day 13')
 with open('day13.txt') as f:
     target, buses = f.read().split('\n')
     target = int(target)
-    buses = [[i, int(bus)] for i, bus in enumerate(buses.split(",")) if bus != 'x']
+    buses = [
+        [i, int(bus)] for i, bus in enumerate(buses.split(",")) if bus != 'x'
+    ]
 
 wait = 1000
 id = None
@@ -36,9 +39,13 @@ for offset2, bus2 in buses[1:]:
             if not init_step: # find the timestamp where they will first meet
                 init_step = timestamp
                 resume = timestamp
-            else: # find the next timestamp where they will meet to know the cycle length or step
+            else: 
+                # find the next timestamp where they will meet to know the 
+                # cycle length or step
                 step = timestamp - init_step
-                timestamp = resume # resume to the timestamp where the 2 buses first met
+                
+                # resume to the timestamp where the 2 buses first met
+                timestamp = resume 
                 break
     
     offset1, bus1 = init_step, step

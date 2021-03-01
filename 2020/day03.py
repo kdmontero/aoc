@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 03')
 with open('day03.txt') as given:
     unit_map = given.read().split('\n')
 

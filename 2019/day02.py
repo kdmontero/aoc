@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+print('Advent of Code 2019 - Day 02')
 with open('day02.txt') as given:
     intcode = [int(num) for num in given.read().split(',')]
 

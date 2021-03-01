@@ -1,3 +1,4 @@
+print('Advent of Code 2019 - Day 09')
 with open('day09.txt') as given:
 	boost = [int(num) for num in given.read().split(',')]
 

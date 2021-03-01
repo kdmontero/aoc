@@ -2,6 +2,7 @@ import os
 import time
 import copy
 
+print('Advent of Code 2019 - Day 15')
 with open('day15.txt') as f:
     intcode = [int(num) for num in f.read().split(',')]
 intcode += [0]*1000
@@ -282,7 +283,7 @@ class RepairDroid:
 
 
 # part 1
-show_animation = True #  CHANGE HERE TO SEE THE ANIMATION
+show_animation = False # CHANGE HERE TO SEE THE ANIMATION
 droid = RepairDroid()
 droid.explore(show_animation)
 droid.x, droid.y = 0, 0
@@ -306,8 +307,8 @@ while True:
     neighbors = [(y+1, x), (y-1, x), (y, x+1), (y, x-1)]
     for neighbor in neighbors:
         if (droid.map[neighbor][0] in {RepairDroid.PATH, RepairDroid.OXYGEN} and
-            neighbor not in visited):
-                stack.append((*neighbor, steps+1))
+        neighbor not in visited):
+            stack.append((*neighbor, steps+1))
 
 
 # part 2

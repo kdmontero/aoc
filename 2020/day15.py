@@ -1,3 +1,4 @@
+print('Advent of Code 2020 - Day 15')
 given = '8,11,0,19,1,2'
 start = [int(i) for i in given.split(',')]
 
@@ -18,5 +19,6 @@ def memory_game(start, target):
         turn += 1
     return current
 
-print(f'Part 1: {memory_game(start, 2020)}') # 447
-print(f'Part 2: {memory_game(start, 30000000)}') # 11721679
+print(f'Part 1: {memory_game(start, 2020)}') # 447 - part 1
+
+print(f'Part 2: {memory_game(start, 30000000)}') # 11721679 - part 2

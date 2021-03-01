@@ -1,5 +1,6 @@
 from collections import Counter
 
+print('Advent of Code 2019 - Day 04')
 given = '372304-847060'
 
 min_, max_ = tuple(given.split('-'))
@@ -32,5 +33,6 @@ for pw in range(int(min_), int(max_)+1):
 	if adj_check2(str(pw)) and inc_check(str(pw)):
 		count2 += 1
 
-print(f'Part 1: {count1}') # 475
-print(f'Part 2: {count2}') # 297
+print(f'Part 1: {count1}') # 475 - part 1
+
+print(f'Part 2: {count2}') # 297 - part 2

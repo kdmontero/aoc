@@ -1,5 +1,7 @@
 from copy import deepcopy
 from collections import OrderedDict
+
+print('Advent of Code 2020 - Day 21')
 with open('day21.txt') as f:
     foods = []
     ingredients = set()
@@ -9,6 +11,7 @@ with open('day21.txt') as f:
         ingredients.update(i.split(' '))
         allergens.update(a.split(', '))
         foods.append([i.split(' '),a.split(', ')])
+
 
 # part 1
 with_a = set()

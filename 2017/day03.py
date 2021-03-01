@@ -1,5 +1,6 @@
 from collections import Counter
 
+print('Advent of Code 2017 - Day 03')
 given = '325489'
 
 class Port:

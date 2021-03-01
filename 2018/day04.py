@@ -1,5 +1,6 @@
 import collections
 
+print('Advent of Code 2018 - Day 04')
 with open('day04.txt') as f:
     records = []
     for line in f.read().splitlines():

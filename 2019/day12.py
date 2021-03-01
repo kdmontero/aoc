@@ -1,5 +1,6 @@
 from collections import Counter
 
+print('Advent of Code 2019 - Day 12')
 with open('day12.txt') as f:
     given_pos = [
         line.strip('>').replace('<x=', '').replace('y=', '').replace(

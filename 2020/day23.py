@@ -1,6 +1,7 @@
 from collections import deque
 from copy import deepcopy
 
+print('Advent of Code 2020 - Day 23')
 given = '538914762'
 
 # part 1

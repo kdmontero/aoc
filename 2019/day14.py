@@ -1,6 +1,7 @@
 from collections import deque, Counter
 from copy import deepcopy
 
+print('Advent of Code 2019 - Day 14')
 with open('day14.txt') as f:
     recipe = {}
     qty = {}

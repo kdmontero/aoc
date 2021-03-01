@@ -1,5 +1,7 @@
+print('Advent of Code 2017 - Day 02')
 with open('day02.txt') as f:
-    spreadsheet = [[int(num) for num in line.split()] for line in f.read().splitlines()]
+    spreadsheet = [[int(num) for num in line.split()] 
+    for line in f.read().splitlines()]
 
 checksum = 0
 sum_ = 0
