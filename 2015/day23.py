@@ -1,3 +1,4 @@
+print('Advent of Code 2015 - Day 23')
 with open('day23.txt') as f:
     instructions = []
     for line in f.read().splitlines():

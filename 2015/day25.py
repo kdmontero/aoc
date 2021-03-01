@@ -1,3 +1,4 @@
+print('Advent of Code 2015 - Day 25')
 given = 'To continue, please consult the code grid in the manual.  Enter the code at row 2978, column 3083.'
 
 # part 1

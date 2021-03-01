@@ -1,3 +1,4 @@
+print('Advent of Code 2015 - Day 03')
 with open('day03.txt') as f:
     directions = list(f.readline())
 

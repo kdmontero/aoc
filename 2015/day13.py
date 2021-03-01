@@ -1,5 +1,6 @@
 import itertools
 
+print('Advent of Code 2015 - Day 13')
 with open('day13.txt') as f:
     notes = {}
     for line in f.read().splitlines():

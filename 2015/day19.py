@@ -1,3 +1,4 @@
+print('Advent of Code 2015 - Day 19')
 with open('day19.txt') as f:
     given_rep, medicine = f.read().split('\n\n')
     replacements = []

@@ -1,5 +1,6 @@
 import collections
 
+print('Advent of Code 2015 - Day 17')
 with open('day17.txt') as f:
     containers = sorted([int(i) for i in f.read().splitlines()])
 

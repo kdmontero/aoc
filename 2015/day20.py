@@ -2,6 +2,7 @@ import collections
 import itertools
 import math
 
+print('Advent of Code 2015 - Day 20')
 INPUT = 36000000
 
 # part 1

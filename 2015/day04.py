@@ -1,5 +1,6 @@
 import hashlib
 
+print('Advent of Code 2015 - Day 04')
 key = 'ckczppom'
 
 # part 1

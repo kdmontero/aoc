@@ -1,3 +1,4 @@
+print('Advent of Code 2015 - Day 15')
 class Ingredient:
     def __init__(self, name, capacity, durability, flavor, texture, calories):
         self.name = name

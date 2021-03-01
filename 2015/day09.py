@@ -1,5 +1,6 @@
 import itertools
 
+print('Advent of Code 2015 - Day 09')
 with open('day09.txt') as f:
     paths = {}
     for line in f.read().splitlines():

@@ -1,5 +1,6 @@
 import collections
 
+print('Advent of Code 2015 - Day 11')
 INPUT = 'hepxcrrq'
 
 def check1(pw):

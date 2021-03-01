@@ -1,5 +1,6 @@
 import math
 
+print('Advent of Code 2015 - Day 21')
 class Character:
     def __init__(self, hp, damage, defense):
         self.hp = hp

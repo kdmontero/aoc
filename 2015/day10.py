@@ -1,5 +1,6 @@
 INPUT = '1321131112'
 
+print('Advent of Code 2015 - Day 10')
 def get_conway_length(start, turns):
     for _ in range(turns):
         next_num = ''
