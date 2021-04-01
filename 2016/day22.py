@@ -93,17 +93,19 @@ def get_state(y, x, grid):
             return LARGE
 
     return '.'
-    return str(check_adjacent(y, x, grid))
 
 array = [['.']*(max_x+1) for _ in range(max_y+1)]
+
 for i in range(max_y+1):
     for j in range(max_x+1):
         if grid.get((i, j)):
             array[i][j] = get_state(i, j, grid)
 
+'''
 def print_array(array):
     for line in array:
         print(''.join(line))
+'''
 
 def a_star(array, start, end):
     # elements on queue: (f_cost: g_cost + h_cost, h_cost: distance from end,
