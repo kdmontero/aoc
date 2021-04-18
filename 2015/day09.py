@@ -3,6 +3,21 @@ import itertools
 print('Advent of Code 2015 - Day 09')
 with open('day09.txt') as f:
     paths = {}
+    # format of paths:
+    # {
+    #   start1: {
+    #       dest1: length of start1 to dest1,
+    #       dest2: length of start1 to dest2,
+    #       ...
+    #       },
+    #   start2: {
+    #       dest1: length of start2 to dest1,
+    #       dest2: lenght of start2 to dest2,
+    #       ...
+    #       },
+    #   ...
+    # }
+
     for line in f.read().splitlines():
         way, distance = line.split(' = ')
         place1, place2 = way.split(' to ')
