@@ -130,4 +130,4 @@ def find_correct_input():
 
 REPEATING_PATTERN = 20
 print(f'Part 1: {find_correct_input()}') # 189
-print('Part 2: Collect all 49 stars')
+print('Part 2: Complete all 49 stars in Advent of Code 2016')
