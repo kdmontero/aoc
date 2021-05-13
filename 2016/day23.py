@@ -32,7 +32,8 @@ def optimize(instruction):
                     instruction[i+2] = ['cpy', 0, arg_2]
                     instruction[i+3] = ['jnz', 0, 0]
 
-                    i += 4
+                    i += 5
+                    continue
         i += 1
 
     return instruction
@@ -88,7 +89,7 @@ def reg_a(reg):
                         ins[i+index][0] = 'jnz'
 
         elif ins[i][0] == 'mul':
-            reg[ins[i][3]] = reg[ins[i][1]] * reg[ins[i][2]]
+            reg[ins[i][3]] += reg[ins[i][1]] * reg[ins[i][2]]
 
         i += 1
 
