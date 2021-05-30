@@ -41,5 +41,4 @@ for r, change, val, reg, equality, num in raw_ins:
         max_val = max(registers[r], max_val)
 
 print(f'Part 1: {max(registers.values())}') # 4448 - part 1
-
 print(f'Part 2: {max_val}') # 6582 - part 2
