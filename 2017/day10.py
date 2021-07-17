@@ -63,7 +63,8 @@ class KnotHash:
         self.sparse_hash()
         return self.dense_hash()
 
-def main():
+
+if __name__ == '__main__':
     print('Advent of Code 2017 - Day 10')
 
     with open('day10.txt') as f:
@@ -78,7 +79,5 @@ def main():
     # part 2 
     lengths2 = KnotHash.get_lengths(given_string)
     given = KnotHash(deque(range(256)), lengths2, 0, 0)
-    print(f'Part 2: {given.final_knot_hash()}') # 35b028fe2c958793f7d5a61d07a008c8
-
-if __name__ == '__main__':
-    main()
+    print(f'Part 2: {given.final_knot_hash()}') 
+    # 35b028fe2c958793f7d5a61d07a008c8
