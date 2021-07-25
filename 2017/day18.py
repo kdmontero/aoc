@@ -76,13 +76,11 @@ if __name__ == '__main__':
 
     # part 2
     def duet(p1, p2):
-        i = 0
         while True:
             p1.run(p2)
             p2.run(p1)
             if not (p1.queue or p2.queue):
                 break
-            i += 1
         return p2.send_qty
 
     p1 = Program(0, instructions)
