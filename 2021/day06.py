@@ -14,6 +14,8 @@ if __name__ == '__main__':
                     new_timer[8] = timer[i]
                 else:
                     new_timer[i-1] += timer[i]
+            timer = new_timer
+
         return sum(new_timer.values())
     
     # part 1
