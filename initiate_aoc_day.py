@@ -44,8 +44,8 @@ code = (
     f"    print('Advent of Code {year} - Day {day}')\n\n"
     f"    with open('day{day}.txt') as f:\n"
     "        pass\n\n\n"
-    "    print(f'Part 1: {}') #\n\n\n"
-    "    print(f'Part 2: {}') #"
+    "    print(f'Part 1: {0}') #\n\n\n"
+    "    print(f'Part 2: {0}') #"
 )
 
 subprocess.call(f'echo "{code}" >> day{day}.py', shell=True)
