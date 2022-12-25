@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     no_beacon = set()
     for sensor in sensors:
-        sensor_x, sensor_y, beacon_x, _, distance = sensor
+        sensor_x, sensor_y, _, _, distance = sensor
         if distance < abs(sensor_y - 2_000_000):
             continue
 
@@ -26,6 +26,8 @@ if __name__ == '__main__':
             no_beacon.add((sensor_x + i, 2_000_000))
             no_beacon.add((sensor_x - i, 2_000_000))
 
+    for sensor in sensors:
+        _, _, beacon_x, beacon_y, distance = sensor
         no_beacon -= {(beacon_x, beacon_y)}
 
 
