@@ -35,10 +35,8 @@ if __name__ == '__main__':
             queue = temp_queue
 
     paths = {}
-    path_list = []
     for start in flow:
         paths[start] = {}
-        path_list.append(start)
         for end in flow:
             if start == end:
                 continue
@@ -46,7 +44,6 @@ if __name__ == '__main__':
             paths[start][end] = distance
 
     
-    print(path_list)
     # part 1
 
     queue = [(0, {'AA'}, 'AA', 30)] # pressure, visited, node, time remaining
