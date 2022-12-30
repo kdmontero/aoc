@@ -18,7 +18,7 @@ if __name__ == '__main__':
             if [x, y, z+1] not in cubes:
                 surface_area += 1
 
-    print(f'Part 1: {surface_area}') #
+    print(f'Part 1: {surface_area}') # 3412
 
 
     print(f'Part 2: {0}') #
