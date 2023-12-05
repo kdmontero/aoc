@@ -1,5 +1,7 @@
+from typing import List
+
 class Converter:
-    def __init__(self, conversion: list[list[int, int, int]]) -> None:
+    def __init__(self, conversion: List[List[int]]) -> None:
         arranged = []
         for dest, source, range_ in conversion:
             arranged.append([source, dest, range_])
@@ -74,10 +76,12 @@ if __name__ == '__main__':
     # part 2
 
     min_location = 999_999_999_999_999
+    '''
     for i in range(0, len(seeds), 2):
         start, range_ = seeds[i], seeds[i+1]
         print(i, start, range_)
         for seed in range(start, start + range_):
             min_location = min(min_location, seed_to_location(seed))
+    '''
     
     print(f'Part 2: {min_location}') #
