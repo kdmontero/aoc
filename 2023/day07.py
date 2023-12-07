@@ -15,20 +15,13 @@ if __name__ == '__main__':
 
     # part 1
 
-    class Card:
+    class Hand:
         index = {str(i): i for i in range(2,10)}
         index['T'] = 10
         index['J'] = 11
         index['Q'] = 12
         index['K'] = 13
         index['A'] = 14
-
-        def __init__(self, card: str) -> None:
-            self.card = card
-            self.val = self.index[card]
-        
-    class Hand:
-        unit = Card
 
         def __init__(self, cards: str, bid: int) -> None:
             self.cards = cards
@@ -64,9 +57,9 @@ if __name__ == '__main__':
                 return True
             elif self.strength == other.strength:
                 for self_card, other_card in zip(self.cards, other.cards):
-                    if self.unit(self_card).val < self.unit(other_card).val:
+                    if self.index[self_card] < self.index[other_card]:
                         return True
-                    elif self.unit(self_card).val > self.unit(other_card).val:
+                    elif self.index[self_card] > self.index[other_card]:
                         return False
             return False
         
@@ -88,26 +81,24 @@ if __name__ == '__main__':
 
     # part 2
     
-    class CardJoker(Card):
-        index = deepcopy(Card.index)
-        index['J'] = 1
-
     class HandJoker(Hand):
-        unit = CardJoker
+        index = deepcopy(Hand.index)
+        index['J'] = 1
 
         @property
         def counter(self):
             orig_counter = Counter(self.cards)
-            if 'J' in self.cards:
-                self._counter = {key: value for key, value in orig_counter.items() if key != 'J'}
-
-                if len(self._counter) == 0:
-                    self._counter = {'A': 5}
-                else:
-                    leading_card = max(self._counter, key=lambda x: self._counter[x])
-                    self._counter[leading_card] += orig_counter['J']
-            else:
+            if 'J' not in self.cards:
                 self._counter = orig_counter
+                return self._counter
+
+            self._counter = {key: value for key, value in orig_counter.items() if key != 'J'}
+            if len(self._counter) == 0:
+                self._counter = {'A': 5}
+                return self._counter
+
+            leading_card = max(self._counter, key=lambda x: self._counter[x])
+            self._counter[leading_card] += orig_counter['J']
             return self._counter
 
     hands2 = [HandJoker(hand, bid) for hand, bid in hands]

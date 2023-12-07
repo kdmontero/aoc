@@ -16,7 +16,7 @@ if len(day) != 2:
     print('Error: Input day XX')
     exit()
 
-if not os.getcwd().endswith(f'Github/aoc/{year}'):
+if not os.getcwd().endswith(f'aoc\\{year}'):
     print(f'Error: Invalid AOC directory')
     exit()
 
@@ -48,7 +48,10 @@ code = (
     "    print(f'Part 2: {0}') #"
 )
 
-subprocess.call(f'echo "{code}" >> day{day}.py', shell=True)
+# subprocess.call(f"echo {code} >> day{day}.py", shell=False)
+subprocess.call(f"touch day{day}.py", shell=True)
+with open(f'day{day}.py', 'w') as f:
+    f.write(code)
 
 
 print(f'Day {day} initiated successfully')
