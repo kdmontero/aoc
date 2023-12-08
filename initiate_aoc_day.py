@@ -16,9 +16,14 @@ if len(day) != 2:
     print('Error: Input day XX')
     exit()
 
-if not os.getcwd().endswith(f'Github/aoc/{year}'):
-    print(f'Error: Invalid AOC directory')
-    exit()
+if os.name == 'posix':
+    if not os.getcwd().endswith(f'Github/aoc/{year}'):
+        print(f'Error: Invalid AOC directory')
+        exit()
+elif os.name == 'nt':
+    if not os.getcwd().endswith(f'aoc\\{year}'):
+        print(f'Error: Invalid AOC directory')
+        exit()
 
 if (int(year) < 2015) or (int(year) > 2100):
     print('Error: Invalid year')
@@ -48,7 +53,12 @@ code = (
     "    print(f'Part 2: {0}') #"
 )
 
-subprocess.call(f'echo "{code}" >> day{day}.py', shell=True)
+if os.name == 'posix':
+    subprocess.call(f"echo {code} >> day{day}.py", shell=True)
+elif os.name == 'nt':
+    subprocess.call(f"touch day{day}.py", shell=True)
+    with open(f'day{day}.py', 'w') as f:
+        f.write(code)
 
 
 print(f'Day {day} initiated successfully')
