@@ -4,12 +4,11 @@ from copy import deepcopy
 if __name__ == '__main__':
     print('Advent of Code 2023 - Day 14')
 
-    with open('s.txt') as f:
+    with open('day14.txt') as f:
         orig_platform = []
         for row, line in enumerate(f.read().splitlines()):
             orig_platform.append(list(line))
         orig_platform = tuple(tuple(line) for line in orig_platform)
-        print(orig_platform)
 
 
     def tilt_north(platform: list[list[str]]) -> list[list[str]]:
@@ -35,7 +34,15 @@ if __name__ == '__main__':
                                 break
         return tuple(tuple(line) for line in platform)
     
+    def print_platform(platform):
+        for y in range(len(platform)):
+            s = ''
+            for x in range(len(platform[0])):
+                s += platform[y][x]
+            print(s)
+            
     def rotate_cw(platform: list[list[str]]) -> list[list[str]]:
+        platform = [list(line) for line in platform]
         rotated = []
         for col in range(len(platform[0])):
             new_row = []
@@ -45,6 +52,7 @@ if __name__ == '__main__':
         return tuple(tuple(line) for line in rotated)
 
     def rotate_ccw(platform: list[list[str]]) -> list[list[str]]:
+        platform = [list(line) for line in platform]
         rotated = []
         for col in range(len(platform[0]) - 1, -1, -1):
             new_row = []
@@ -101,12 +109,6 @@ if __name__ == '__main__':
     # height = i + 1
     # width = 1
     
-    def print_platform(w, h):
-        for y in range(h):
-            s = ''
-            for x in range(w):
-                s += platform[(y, x)]
-            print(s)
 
     # print_platform(width, height)
 
@@ -114,20 +116,19 @@ if __name__ == '__main__':
 
     platform2 = deepcopy(orig_platform)
     visited = {}
-    i = 1
+    i = 0
     while platform2 not in visited:
-        platform2 = tilt_cycle(platform2)
         visited[platform2] = i
+        platform2 = tilt_cycle(platform2)
         i += 1
     first_seen = visited[platform2]
     cyclic = i - first_seen
     final_state = ((1_000_000_000 - first_seen) % cyclic) + first_seen
     for key, value in visited.items():
         if value == final_state:
-            final_platform = value
+            final_platform = key
             break
 
-    print(final_platform)
     total_load2 = north_support(final_platform)
 
     print(f'Part 2: {total_load2}') #
