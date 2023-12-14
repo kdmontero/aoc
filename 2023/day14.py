@@ -1,4 +1,5 @@
 from copy import deepcopy
+from typing import Sequence
 
 
 if __name__ == '__main__':
@@ -8,11 +9,8 @@ if __name__ == '__main__':
         orig_platform = []
         for row, line in enumerate(f.read().splitlines()):
             orig_platform.append(list(line))
-        orig_platform = tuple(tuple(line) for line in orig_platform)
-
 
     def tilt_north(platform: list[list[str]]) -> list[list[str]]:
-        platform = [list(line) for line in platform]
         height = len(platform)
         width = len(platform[0])
         for col in range(width):
@@ -32,34 +30,25 @@ if __name__ == '__main__':
                             if platform[next_stone][col] == '.':
                                 marker = next_stone
                                 break
-        return tuple(tuple(line) for line in platform)
+        return platform
     
-    def print_platform(platform):
-        for y in range(len(platform)):
-            s = ''
-            for x in range(len(platform[0])):
-                s += platform[y][x]
-            print(s)
-            
     def rotate_cw(platform: list[list[str]]) -> list[list[str]]:
-        platform = [list(line) for line in platform]
         rotated = []
         for col in range(len(platform[0])):
             new_row = []
             for row in range(len(platform) - 1, -1, -1):
                 new_row.append(platform[row][col])
             rotated.append(new_row)
-        return tuple(tuple(line) for line in rotated)
+        return rotated
 
     def rotate_ccw(platform: list[list[str]]) -> list[list[str]]:
-        platform = [list(line) for line in platform]
         rotated = []
         for col in range(len(platform[0]) - 1, -1, -1):
             new_row = []
             for row in range(len(platform)):
                 new_row.append(platform[row][col])
             rotated.append(new_row)
-        return tuple(tuple(line) for line in rotated)
+        return rotated
 
     def tilt_west(platform: list[list[str]]) -> list[list[str]]:
         platform = rotate_cw(platform)
@@ -86,7 +75,7 @@ if __name__ == '__main__':
         platform = tilt_east(platform)
         return platform
 
-    def north_support(platform: list[list[str]]) -> int:
+    def get_north_load(platform: Sequence[Sequence[str]]) -> int:
         total_load = 0
         height = len(platform)
         for load, row in enumerate(platform):
@@ -95,40 +84,44 @@ if __name__ == '__main__':
                     total_load += height - load
         return total_load
 
+    # for debugging
+    def print_platform(platform: Sequence[Sequence[str]]) -> None:
+        for y in range(len(platform)):
+            row = ''
+            for x in range(len(platform[0])):
+                row += platform[y][x]
+            print(row)
+            
     
     # part 1
 
     platform1 = deepcopy(orig_platform)
-    total_load1 = north_support(tilt_north(platform1))
+    total_load1 = get_north_load(tilt_north(platform1))
     print(f'Part 1: {total_load1}') # 106378
 
-    # a = '....O#O...OO'
-    # platform.clear()
-    # for i, char in enumerate(a):
-    #     platform[(i, 0)] = char
-    # height = i + 1
-    # width = 1
-    
-
-    # print_platform(width, height)
 
     # part 2
 
+    def platform_to_tuple(platform: list[list[str]]) -> tuple[tuple[str]]:
+        return tuple(tuple(line) for line in platform)
+
     platform2 = deepcopy(orig_platform)
     visited = {}
+
     i = 0
-    while platform2 not in visited:
-        visited[platform2] = i
+    while platform_to_tuple(platform2) not in visited.values():
+        visited[i] = platform_to_tuple(platform2)
         platform2 = tilt_cycle(platform2)
         i += 1
-    first_seen = visited[platform2]
-    cyclic = i - first_seen
-    final_state = ((1_000_000_000 - first_seen) % cyclic) + first_seen
-    for key, value in visited.items():
-        if value == final_state:
-            final_platform = key
-            break
 
-    total_load2 = north_support(final_platform)
+    for index, platform in visited.items():
+        if platform == platform_to_tuple(platform2):
+            first_repeat = index
+    
+    cycle = i - first_repeat
+    final_state = ((1_000_000_000 - first_repeat) % cycle) + first_repeat
+    final_platform = visited[final_state]
 
-    print(f'Part 2: {total_load2}') #
+    total_load2 = get_north_load(final_platform)
+
+    print(f'Part 2: {total_load2}') # 90795
