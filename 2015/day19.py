@@ -6,6 +6,7 @@ with open('day19.txt') as f:
         replacements.append(replacement.split(' => '))
 
 # part 1
+
 molecules = set()
 for orig, new in replacements:
     count = medicine.count(orig)
@@ -21,3 +22,23 @@ for orig, new in replacements:
                 break
 
 print(f'Part 1: {len(molecules)}') # 535
+
+
+# part 2 - found in reddit that greedy algorithm works for the specific input
+# used backtracking
+
+replacements.sort(key=lambda x: -len(x[1]))
+def find_steps(medicine, target, steps):
+    if medicine == target:
+        return steps
+
+    for orig, new in replacements:
+        if new not in medicine:
+            continue
+        count = medicine.count(new)
+        medicine = medicine.replace(new, orig)
+        return count + find_steps(medicine, target, steps)
+
+    return 0
+
+print(f'Part 2: {find_steps(medicine, "e", 0)}') # 212
