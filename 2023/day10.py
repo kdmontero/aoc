@@ -66,4 +66,4 @@ if __name__ == '__main__':
 
     print(f'Part 1: {steps//2}') # 6714 - part 1
 
-    print(f'Part 2: {int(abs(area) - steps//2 + 1)}') # 429 - part 2
+    print(f'Part 2: {int(abs(area) - steps/2 + 1)}') # 429 - part 2

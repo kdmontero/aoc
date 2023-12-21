@@ -44,7 +44,7 @@ if __name__ == '__main__':
             y2, x2 = dig_map[i + 1]
             area += 0.5 * ((x1 * y2) - (x2 * y1))
         
-        return int(area + perimeter//2 + 1)
+        return int(area + perimeter/2 + 1)
 
     
     area1 = get_area(dig_plan1)
