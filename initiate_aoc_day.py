@@ -54,6 +54,7 @@ code = (
 )
 
 subprocess.call(f"touch day{day}.py", shell=True)
+subprocess.call(f"touch day{day}.txt", shell=True)
 with open(f'day{day}.py', 'w') as f:
     f.write(code)
 
