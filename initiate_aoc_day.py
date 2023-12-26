@@ -53,12 +53,10 @@ code = (
     "    print(f'Part 2: {0}') #"
 )
 
-if os.name == 'posix':
-    subprocess.call(f"echo {code} >> day{day}.py", shell=True)
-elif os.name == 'nt':
-    subprocess.call(f"touch day{day}.py", shell=True)
-    with open(f'day{day}.py', 'w') as f:
-        f.write(code)
+subprocess.call(f"touch day{day}.py", shell=True)
+subprocess.call(f"touch day{day}.txt", shell=True)
+with open(f'day{day}.py', 'w') as f:
+    f.write(code)
 
 
 print(f'Day {day} initiated successfully')
