@@ -9,32 +9,26 @@ from requests import request
 # ERROR HANDLERS
 
 if len(sys.argv) < 2:
-    print('Error: Input day XX')
-    exit()
+    exit('Error: Input day XX')
 
 year = os.getcwd()[-4:]
 day = sys.argv[1]
 
 if len(day) != 2:
-    print('Error: Input day XX')
-    exit()
+    exit('Error: Input day XX')
 
 if os.name == 'posix':
     if not os.getcwd().endswith(f'Github/aoc/{year}'):
-        print(f'Error: Invalid AOC directory')
-        exit()
+        exit(f'Error: Invalid AOC directory')
 elif os.name == 'nt':
     if not os.getcwd().endswith(f'aoc\\{year}'):
-        print(f'Error: Invalid AOC directory')
-        exit()
+        exit(f'Error: Invalid AOC directory')
 
 if (int(year) < 2015) or (int(year) > 2100):
-    print('Error: Invalid year')
-    exit()
+    exit('Error: Invalid year')
 
 if (int(day) < 1) or (int(day) > 25):
-    print('Error: Invalid day')
-    exit()
+    exit('Error: Invalid day')
 
 
 
@@ -52,6 +46,8 @@ def initiate_script():
 
     with open(f'day{day}.py', 'w') as f:
         f.write(code)
+
+    return
 
 
 if f'day{day}.py' in os.listdir():
@@ -89,11 +85,13 @@ def download_input():
         else:
             break
     else:
-        raise SystemExit('timed out after 5 failed attempts')
+        exit('timed out after 5 failed attempts')
 
 
     with open(f'day{day}.txt', 'w') as f:
         f.write(response.text.strip())
+
+    return
 
 
 if f'day{day}.txt' in os.listdir():
