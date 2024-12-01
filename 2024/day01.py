@@ -22,7 +22,6 @@ if __name__ == '__main__':
     for num1, num2 in zip(group1, group2):
         total_distance += abs(num1 - num2)
 
-
     print(f'Part 1: {total_distance}') # 2196996
 
 
@@ -33,7 +32,6 @@ if __name__ == '__main__':
     similarity_score = 0
     for num in group1:
         similarity_score += num * counter[num]
-
 
     print(f'Part 2: {similarity_score}') # 23655822
 
