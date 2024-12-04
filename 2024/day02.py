@@ -11,34 +11,21 @@ if __name__ == '__main__':
 
     # part 1
 
-    def is_safe(report):
-        if report == sorted(report):
-            for i, num in enumerate(report[:-1]):
-                if report[i+1] - num not in {1, 2, 3}:
-                    break
-            else:
-                return True
+    def is_safe(report: list[int]) -> bool:
+        diff = set()
+        for i, num in enumerate(report[:-1]):
+            diff.add(report[i+1] - num)
+        return diff.issubset({1, 2, 3}) or diff.issubset({-1, -2, -3})
 
-            return False
-
-        if report == sorted(report, reverse=True):
-            for i, num in enumerate(report[:-1]):
-                if num - report[i+1] not in {1, 2, 3}:
-                    break
-            else:
-                return True
-
-            return False
-
-        return False
-
-
-    total_safe1 = 0
+    total_safe = 0
+    unsafe_reports = []
     for report in reports:
         if is_safe(report):
-            total_safe1 += 1
+            total_safe += 1
+        else:
+            unsafe_reports.append(report)
 
-    print(f'Part 1: {total_safe1}') # 524
+    print(f'Part 1: {total_safe}') # 524
 
 
     # part 2
@@ -57,10 +44,10 @@ if __name__ == '__main__':
 
         return True
 
-    total_safe2 = 0
-    for report in reports:
+    additional_safe = 0
+    for report in unsafe_reports:
         if modified_is_safe(report):
-            total_safe2 += 1
+            additional_safe += 1
 
-    print(f'Part 2: {total_safe2}') # 569
+    print(f'Part 2: {total_safe + additional_safe}') # 569
 
