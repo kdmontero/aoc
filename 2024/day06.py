@@ -1,6 +1,3 @@
-from copy import deepcopy
-
-
 if __name__ == '__main__':
     print('Advent of Code 2024 - Day 06')
 
@@ -41,7 +38,7 @@ if __name__ == '__main__':
             elif self.dir == '<':
                 self.dir = '^'
 
-        def can_walk(self, map_: dict[tuple[int, int], str]) -> bool:
+        def can_walk(self) -> bool:
             if self.dir == '^':
                 next_step = map_.get((guard.y - 1, guard.x))
             elif self.dir == 'v':
@@ -56,7 +53,7 @@ if __name__ == '__main__':
 
             return next_step != '#'
 
-        def walk_to_end(self, map_: dict[tuple[int, int], str]) -> None:
+        def walk_to_end(self) -> None:
             if self.dir == '^':
                 for j in range(self.y - 1, -1, -1):
                     if map_.get((j, self.x)) == '#':
@@ -87,7 +84,7 @@ if __name__ == '__main__':
 
     positions = set()
     while not guard.reached_end:
-        if guard.can_walk(map_):
+        if guard.can_walk():
             positions.add((guard.y, guard.x))
             guard.walk()
         else:
@@ -98,16 +95,16 @@ if __name__ == '__main__':
 
     # part 2
 
-    def is_loop(guard: Guard, map_: dict[tuple[int, int], str]) -> bool:
+    def is_loop(guard: Guard) -> bool:
 
         visited = set()
         while not guard.reached_end:
             if (guard.y, guard.x, guard.dir) in visited:
                 return True
 
-            if guard.can_walk(map_):
+            if guard.can_walk():
                 visited.add((guard.y, guard.x, guard.dir))
-                guard.walk_to_end(map_)
+                guard.walk_to_end()
             else:
                 guard.turn()
 
@@ -118,7 +115,7 @@ if __name__ == '__main__':
     for obstruction in obstructions:
         map_[obstruction] = '#'
         guard = Guard(*init_guard)
-        if is_loop(guard, map_):
+        if is_loop(guard):
             loop_obstruction += 1
         map_[obstruction] = '.'
 
