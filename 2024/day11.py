@@ -8,7 +8,7 @@ if __name__ == '__main__':
         stones = [int(num) for num in f.read().strip().split()]
 
     @lru_cache(maxsize=None)
-    def stone_blink(stone: int, blink: int) -> list[int]:
+    def stone_blink(stone: int, blink: int) -> int:
         if blink == 0:
             return 1
 
