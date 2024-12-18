@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import time
 
@@ -6,42 +7,39 @@ from requests import HTTPError
 from requests import request
 
 
-# ERROR HANDLERS
+def initiate_script(year: int, day: int, session_cookie: str) -> None:
 
-if len(sys.argv) < 2:
-    exit('Error: Input day XX')
+    # get the title of the puzzle
+    url = f'https://adventofcode.com/{year}/day/{int(day)}'
+    headers = {
+        'Cookie': session_cookie,
+        'User-Agent': 'kevindmontero@gmail.com'
+    }
 
-year = os.getcwd()[-4:]
-day = sys.argv[1]
+    for _ in range(5):
+        try:
+            response = request('GET', url, headers=headers)
+            response.raise_for_status()
+        except HTTPError as e:
+            print(f'{response.text}')
+            time.sleep(1)
+        else:
+            break
+    else:
+        exit('timed out after 5 failed attempts')
 
-if len(day) != 2:
-    exit('Error: Input day XX')
-
-if os.name == 'posix':
-    if not os.getcwd().endswith(f'Github/aoc/{year}'):
-        exit(f'Error: Invalid AOC directory')
-elif os.name == 'nt':
-    if not os.getcwd().endswith(f'aoc\\{year}'):
-        exit(f'Error: Invalid AOC directory')
-
-if (int(year) < 2015) or (int(year) > 2100):
-    exit('Error: Invalid year')
-
-if (int(day) < 1) or (int(day) > 25):
-    exit('Error: Invalid day')
+    pattern = re.compile(r'Day [\d]+: (.+) ---')
+    title = pattern.findall(response.text)[0]
 
 
-
-# INITIATE PYTHON SCRIPT
-
-def initiate_script():
+    # generate the template code
     code = (
         "if __name__ == '__main__':\n"
-        f"    print('Advent of Code {year} - Day {day}')\n\n"
+        f"    print('Advent of Code {year} - Day {day}: {title}')\n\n"
         f"    with open('day{day}.txt') as f:\n"
         "        pass\n\n\n"
         "    print(f'Part 1: {0}') #\n\n\n"
-        "    print(f'Part 2: {0}') #"
+        "    print(f'Part 2: {0}') #\n"
     )
 
     with open(f'day{day}.py', 'w') as f:
@@ -49,23 +47,7 @@ def initiate_script():
 
     return
 
-
-if f'day{day}.py' in os.listdir():
-    print(f'Day {day} script is already initiated')
-else:
-    initiate_script()
-    print(f'Day {day} script initiated successfully')
-
-
-
-# DOWNLOAD INPUT
-
-def download_input():
-    env_dir = os.path.dirname(os.path.abspath(__file__))
-    env_path = os.path.join(env_dir, '.env')
-
-    with open(env_path) as f:
-        session_cookie = f.read().strip()
+def download_input(session_cookie):
 
     url = f'https://adventofcode.com/{year}/day/{int(day)}/input'
     headers = {
@@ -75,12 +57,11 @@ def download_input():
 
 
     for _ in range(5):
-        response = request('GET', url, headers=headers)
-
         try:
+            response = request('GET', url, headers=headers)
             response.raise_for_status()
-        except HTTPError:
-            raise HTTPError(response.text)
+        except HTTPError as e:
+            print(f'Not ready yet: {e}')
             time.sleep(1)
         else:
             break
@@ -94,9 +75,56 @@ def download_input():
     return
 
 
-if f'day{day}.txt' in os.listdir():
-    print(f'Day {day} input is already downloaded')
-else:
-    download_input()
-    print(f'Day {day} input downloaded successfully')
+if __name__ == '__main__':
+
+    env_dir = os.path.dirname(os.path.abspath(__file__))
+    env_path = os.path.join(env_dir, '.env')
+
+    with open(env_path) as f:
+        session_cookie = f.read().strip()
+
+
+    # ERROR HANDLERS
+
+    if len(sys.argv) < 2:
+        exit('Error: Input day XX')
+
+    year = os.getcwd()[-4:]
+    day = sys.argv[1]
+
+    if len(day) != 2:
+        exit('Error: Input day XX')
+
+    if os.name == 'posix':
+        if not os.getcwd().endswith(f'Github/aoc/{year}'):
+            exit(f'Error: Invalid AOC directory')
+    elif os.name == 'nt':
+        if not os.getcwd().endswith(f'aoc\\{year}'):
+            exit(f'Error: Invalid AOC directory')
+
+    if (int(year) < 2015) or (int(year) > 2100):
+        exit('Error: Invalid year')
+
+    if (int(day) < 1) or (int(day) > 25):
+        exit('Error: Invalid day')
+
+
+
+    # INITIATE PYTHON SCRIPT
+
+    if f'day{day}.py' in os.listdir():
+        print(f'Day {day} script is already initiated')
+    else:
+        initiate_script(year, day, session_cookie)
+        print(f'Day {day} script initiated successfully')
+
+
+
+    # DOWNLOAD INPUT
+
+    if f'day{day}.txt' in os.listdir():
+        print(f'Day {day} input is already downloaded')
+    else:
+        download_input(session_cookie)
+        print(f'Day {day} input downloaded successfully')
 
