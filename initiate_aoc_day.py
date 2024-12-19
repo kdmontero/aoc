@@ -39,7 +39,7 @@ def initiate_script(year: int, day: int, session_cookie: str) -> None:
         f"    with open('day{day}.txt') as f:\n"
         "        pass\n\n\n"
         "    print(f'Part 1: {0}') #\n\n\n"
-        "    print(f'Part 2: {0}') #\n"
+        "    print(f'Part 2: {0}') #\n\n"
     )
 
     with open(f'day{day}.py', 'w') as f:
