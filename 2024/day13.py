@@ -1,5 +1,5 @@
-import re
 import numpy as np
+import re
 
 
 if __name__ == '__main__':
