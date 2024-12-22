@@ -1,7 +1,4 @@
 import heapq as hq
-import os
-import time
-from copy import deepcopy
 
 
 if __name__ == '__main__':
@@ -24,10 +21,9 @@ if __name__ == '__main__':
 
                 tracks.add((y, x))
     
-    # part 1
 
     def get_n(
-        steps: int,
+        score: int,
         y: int,
         x: int,
         dir: str
@@ -36,59 +32,64 @@ if __name__ == '__main__':
         neighbors = []
         if dir == '^':
             if (y, x - 1) in tracks:
-                neighbors.append((steps + 1000, y, x, '<'))
+                neighbors.append((score + 1000, y, x, '<'))
             if (y - 1, x) in tracks:
-                neighbors.append((steps + 1, y - 1, x, dir))
+                neighbors.append((score + 1, y - 1, x, dir))
             if (y, x + 1) in tracks:
-                neighbors.append((steps + 1000, y, x, '>'))
+                neighbors.append((score + 1000, y, x, '>'))
         elif dir == 'v':
+            if (y, x + 1) in tracks:
+                neighbors.append((score + 1000, y, x, '>'))
+            if (y + 1, x) in tracks:
+                neighbors.append((score + 1, y + 1, x, dir))
             if (y, x - 1) in tracks:
-                neighbors.append((steps + 1000, y, x, '<'))
-            if (y + 1, x) in tracks:
-                neighbors.append((steps + 1, y + 1, x, dir))
-            if (y, x + 1) in tracks:
-                neighbors.append((steps + 1000, y, x, '>'))
+                neighbors.append((score + 1000, y, x, '<'))
         elif dir == '>':
-            if (y + 1, x) in tracks:
-                neighbors.append((steps + 1000, y, x, 'v'))
-            if (y, x + 1) in tracks:
-                neighbors.append((steps + 1, y, x + 1, dir))
             if (y - 1, x) in tracks:
-                neighbors.append((steps + 1000, y, x, '^'))
+                neighbors.append((score + 1000, y, x, '^'))
+            if (y, x + 1) in tracks:
+                neighbors.append((score + 1, y, x + 1, dir))
+            if (y + 1, x) in tracks:
+                neighbors.append((score + 1000, y, x, 'v'))
         elif dir == '<':
             if (y + 1, x) in tracks:
-                neighbors.append((steps + 1000, y, x, 'v'))
+                neighbors.append((score + 1000, y, x, 'v'))
             if (y, x - 1) in tracks:
-                neighbors.append((steps + 1, y, x - 1, dir))
+                neighbors.append((score + 1, y, x - 1, dir))
             if (y - 1, x) in tracks:
-                neighbors.append((steps + 1000, y, x, '^'))
+                neighbors.append((score + 1000, y, x, '^'))
 
         return neighbors
 
-    visited = {}
+    min_score = 999999999999
+    valid_tiles = set()
+    checked_node_score = {}
+
     found_end = False
-    queue = [(0, start_y, start_x, start_dir)]
+    cur_score = 0
+    queue = [(cur_score, start_y, start_x, start_dir, set())]
     hq.heapify(queue)
-    while not found_end:
-        cur_steps, cur_y, cur_x, cur_dir = hq.heappop(queue)
-        for nsteps, ny, nx, ndir in get_n(cur_steps, cur_y, cur_x, cur_dir):
-            if (ny, nx, ndir) in visited:
-                if nsteps < visited[(ny, nx, ndir)]:
-                    visited[(ny, nx, ndir)] = nsteps
+
+    while not found_end or cur_score <= min_score:
+        cur_score, cur_y, cur_x, cur_dir, visited = hq.heappop(queue)
+        for nscore, ny, nx, ndir in get_n(cur_score, cur_y, cur_x, cur_dir):
+            if (ny, nx, ndir) in checked_node_score:
+                if nscore < checked_node_score[(ny, nx, ndir)]:
+                    checked_node_score[(ny, nx, ndir)] = nscore
                 else:
                     continue
-            if (nsteps, ny, nx, ndir) not in queue:
-                hq.heappush(queue, (nsteps, ny, nx, ndir))
-        visited[(cur_y, cur_x, cur_dir)] = cur_steps
+            if (nscore, ny, nx, ndir) not in queue:
+                hq.heappush(queue, (nscore, ny, nx, ndir, visited|{(ny, nx)}))
+
+        checked_node_score[(cur_y, cur_x, cur_dir)] = cur_score
+
         if (cur_y, cur_x) == (des_y, des_x):
             found_end = True
+            valid_tiles |= visited
+            min_score = cur_score
             
-    min_score = cur_steps
+    # 1 minute run time
     print(f'Part 1: {min_score}') # 115500
 
-
-    # part 2
-
-
-    print(f'Part 2: {0}') #
+    print(f'Part 2: {len(valid_tiles)}') # 679
 
