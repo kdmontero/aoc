@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 02')
+print("Advent of Code 2020 - Day 02: Password Philosophy")
 def parse(text):
     lmin = text.split('-')[0]
     lmax = text.split('-')[1].split()[0]

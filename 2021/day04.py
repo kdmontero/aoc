@@ -30,7 +30,7 @@ class BingoCard:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 04')
+    print("Advent of Code 2021 - Day 04: Giant Squid")
 
     with open('day04.txt') as f:
         draw_list, *cards_raw = f.read().split('\n\n')

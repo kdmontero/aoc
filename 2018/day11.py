@@ -2,7 +2,7 @@ from typing import Optional, Tuple
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 11')
+    print("Advent of Code 2018 - Day 11: Chronal Charge")
 
     with open('day11.txt') as f:
         serial_no = int(f.read())

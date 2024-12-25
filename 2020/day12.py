@@ -1,7 +1,7 @@
 from collections import deque
 import math
 
-print('Advent of Code 2020 - Day 12')
+print("Advent of Code 2020 - Day 12: Rain Risk")
 with open('day12.txt') as f:
     nav = [(line[0], int(line[1:])) for line in f.read().split('\n')]
 

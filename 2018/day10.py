@@ -2,7 +2,7 @@ import re
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 10')
+    print("Advent of Code 2018 - Day 10: The Stars Align")
 
     with open('day10.txt') as f:
         pattern = re.compile(r'-?\d+')

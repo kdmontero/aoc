@@ -29,7 +29,7 @@ class Workflow:
         return self.default
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 19')
+    print("Advent of Code 2023 - Day 19: Aplenty")
 
     with open('day19.txt') as f:
         raw_workflow, raw_parts = f.read().split('\n\n')

@@ -109,7 +109,7 @@ def execute_game(given_circle, rounds, total_cups=0):
     return circle, circle_dict
 
 
-print('Advent of Code 2020 - Day 23')
+print("Advent of Code 2020 - Day 23: Crab Cups")
 given = '538914762'
 
 cups = [int(num) for num in list(given)]

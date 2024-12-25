@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 05')
+print("Advent of Code 2020 - Day 05: Binary Boarding")
 with open('day05.txt') as f:
     seats = [seat for seat in f.read().split('\n')]
 

@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 09')
+print("Advent of Code 2017 - Day 09: Stream Processing")
 
 with open('day09.txt') as f:
     stream = f.readline()

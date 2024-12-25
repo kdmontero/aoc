@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 13')
+print("Advent of Code 2017 - Day 13: Packet Scanners")
 
 class Layer:
     def __init__(self, depth, range_):

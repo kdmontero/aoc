@@ -1,6 +1,6 @@
 from collections import Counter
 
-print('Advent of Code 2019 - Day 12')
+print("Advent of Code 2019 - Day 12: The N-Body Problem")
 with open('day12.txt') as f:
     given_pos = [
         line.strip('>').replace('<x=', '').replace('y=', '').replace(

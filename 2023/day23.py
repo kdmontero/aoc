@@ -3,7 +3,7 @@ from collections import defaultdict
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 23')
+    print("Advent of Code 2023 - Day 23: A Long Walk")
 
     with open('day23.txt') as f:
         grid = {}

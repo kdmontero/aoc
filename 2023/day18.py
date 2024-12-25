@@ -2,7 +2,7 @@ import re
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 18')
+    print("Advent of Code 2023 - Day 18: Lavaduct Lagoon")
 
     with open('day18.txt') as f:
         dig_plan1 = []

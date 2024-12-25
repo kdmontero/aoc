@@ -1,7 +1,7 @@
 from collections import deque
 from copy import deepcopy
 
-print('Advent of Code 2020 - Day 18')
+print("Advent of Code 2020 - Day 18: Operation Order")
 with open('day18.txt') as f:
     given_homework = [[char for char in expression.split(' ')]
         for expression in f.read().splitlines()]

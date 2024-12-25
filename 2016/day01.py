@@ -1,6 +1,6 @@
 from collections import deque
 
-print('Advent of Code 2016 - Day 01')
+print("Advent of Code 2016 - Day 01: No Time for a Taxicab")
 with open('day01.txt') as f:
     doc = f.read().split(', ')
 

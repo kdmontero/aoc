@@ -1,6 +1,6 @@
 from collections import deque
 
-print('Advent of Code 2019 - Day 08')
+print("Advent of Code 2019 - Day 08: Space Image Format")
 with open('day08.txt') as f:
     data = [int(num) for num in f.read()]
 

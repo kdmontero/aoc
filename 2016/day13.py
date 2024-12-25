@@ -1,7 +1,7 @@
 import time
 import os
 
-print('Advent of Code 2016 - Day 13')
+print("Advent of Code 2016 - Day 13: A Maze of Twisty Little Cubicles")
 INPUT = 1350
 TARGET = (31, 39)
 DELAY = 0.05

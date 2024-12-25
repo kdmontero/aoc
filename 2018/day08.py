@@ -15,7 +15,7 @@ class Node:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 08')
+    print("Advent of Code 2018 - Day 08: Memory Maneuver")
 
     with open('day08.txt') as f:
         data = [int(num) for num in f.read().split()]

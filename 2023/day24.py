@@ -3,7 +3,7 @@ import z3
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 24')
+    print("Advent of Code 2023 - Day 24: Never Tell Me The Odds")
 
     with open('day24.txt') as f:
         records = []

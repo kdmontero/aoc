@@ -12,7 +12,7 @@ class Node:
         return self.lowest_path < other.lowest_path
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 15')
+    print("Advent of Code 2021 - Day 15: Chiton")
 
     with open('day15.txt') as f:
         given_density = {}

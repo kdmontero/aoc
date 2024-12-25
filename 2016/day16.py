@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 16')
+print("Advent of Code 2016 - Day 16: Dragon Checksum")
 INPUT = '01111001100111011'
 LENGTH1 = 272
 LENGTH2 = 35651584

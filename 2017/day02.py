@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 02')
+print("Advent of Code 2017 - Day 02: Corruption Checksum")
 with open('day02.txt') as f:
     spreadsheet = [[int(num) for num in line.split()] 
     for line in f.read().splitlines()]

@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 17')
+    print("Advent of Code 2017 - Day 17: Spinlock")
 
     INPUT = 355
 

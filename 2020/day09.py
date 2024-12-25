@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 09')
+print("Advent of Code 2020 - Day 09: Encoding Error")
 with open('day09.txt') as f:
     xmas = [int(i) for i in f.read().split('\n')]
 

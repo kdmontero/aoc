@@ -1,6 +1,6 @@
 from collections import Counter
 
-print('Advent of Code 2017 - Day 04')
+print("Advent of Code 2017 - Day 04: High-Entropy Passphrases")
 with open('day04.txt') as f:
     phrases = [line.split(' ') for line in f.read().splitlines()]
 

@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 01')
+print("Advent of Code 2020 - Day 01: Report Repair")
 with open('day01.txt') as given:
     expenses = [int(expense) for expense in given.read().split('\n')]
 

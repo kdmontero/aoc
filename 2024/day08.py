@@ -3,7 +3,7 @@ from itertools import combinations
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 08')
+    print("Advent of Code 2024 - Day 08: Resonant Collinearity")
 
     with open('day08.txt') as f:
         scan = defaultdict(set)

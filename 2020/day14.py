@@ -1,6 +1,6 @@
 import itertools
 
-print('Advent of Code 2020 - Day 14')
+print("Advent of Code 2020 - Day 14: Docking Data")
 with open('day14.txt') as f:
     program = []
     temp_group = []

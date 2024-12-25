@@ -1,4 +1,4 @@
-print('Advent of Code 2019 - Day 05')
+print("Advent of Code 2019 - Day 05: Sunny with a Chance of Asteroids")
 with open('day05.txt') as given:
     program = [int(num) for num in given.read().split(',')]
 

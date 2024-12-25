@@ -1,6 +1,6 @@
 from collections import Counter
 
-print('Advent of Code 2018 - Day 02')
+print("Advent of Code 2018 - Day 02: Inventory Management System")
 with open('day02.txt') as f:
     ids = f.read().splitlines()
 

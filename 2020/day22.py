@@ -1,7 +1,7 @@
 from collections import deque
 from copy import deepcopy
 
-print('Advent of Code 2020 - Day 22')
+print("Advent of Code 2020 - Day 22: Crab Combat")
 with open('day22.txt') as f:
     player1, player2 = f.read().split('\n\n')
     given_player1 = deque(int(num) for num in player1.splitlines()[1:])

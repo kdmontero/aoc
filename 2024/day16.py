@@ -2,7 +2,7 @@ import heapq as hq
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 16: Reindeer Maze')
+    print("Advent of Code 2024 - Day 16: Reindeer Maze")
 
     with open('day16.txt') as f:
         tracks = set()

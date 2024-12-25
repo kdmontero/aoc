@@ -3,7 +3,7 @@ import time
 from itertools import cycle
 from collections import deque
 
-print('Advent of Code 2019 - Day 10')
+print("Advent of Code 2019 - Day 10: Monitoring Station")
 class Asteroid:
     def __init__(self, ysym, xsym, slope, y0, x0, distance):
         self.ysym = ysym # symbol of y pos of asteroid relative to SS (space station)

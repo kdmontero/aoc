@@ -1,7 +1,7 @@
 from collections import Counter
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 05')
+    print("Advent of Code 2021 - Day 05: Hydrothermal Venture")
 
     with open('day05.txt') as f:
         vent_points = []

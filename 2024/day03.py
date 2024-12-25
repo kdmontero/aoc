@@ -2,7 +2,7 @@ import re
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 03')
+    print("Advent of Code 2024 - Day 03: Mull It Over")
 
     with open('day03.txt') as f:
         program = f.read().splitlines()

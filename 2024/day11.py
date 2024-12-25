@@ -2,7 +2,7 @@ from functools import lru_cache
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 11')
+    print("Advent of Code 2024 - Day 11: Plutonian Pebbles")
 
     with open('day11.txt') as f:
         stones = [int(num) for num in f.read().strip().split()]

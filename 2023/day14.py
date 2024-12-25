@@ -3,7 +3,7 @@ from typing import Sequence
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 14')
+    print("Advent of Code 2023 - Day 14: Parabolic Reflector Dish")
 
     with open('day14.txt') as f:
         orig_platform = []

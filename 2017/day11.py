@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 11')
+print("Advent of Code 2017 - Day 11: Hex Ed")
 
 with open('day11.txt') as f:
     path = f.read().split(',')

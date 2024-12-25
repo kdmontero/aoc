@@ -1,6 +1,6 @@
 import hashlib
 
-print('Advent of Code 2016 - Day 17')
+print("Advent of Code 2016 - Day 17: Two Steps Forward")
 INPUT = 'qljzarfv'
 OPEN = {'b', 'c', 'd', 'e', 'f'}
 DIRECTIONS = ['U', 'D', 'L', 'R']

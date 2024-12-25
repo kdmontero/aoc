@@ -19,7 +19,7 @@ class MarbleRing:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 09')
+    print("Advent of Code 2018 - Day 09: Marble Mania")
 
     with open('day09.txt') as f:
         pattern = re.compile(r'\d+')

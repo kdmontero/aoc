@@ -3,7 +3,7 @@ import heapq
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 17')
+    print("Advent of Code 2023 - Day 17: Clumsy Crucible")
 
     with open('day17.txt') as f:
         grid = {}

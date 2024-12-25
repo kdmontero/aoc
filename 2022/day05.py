@@ -2,7 +2,7 @@ import re
 import copy
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 05')
+    print("Advent of Code 2022 - Day 05: Supply Stacks")
 
     with open('day05.txt') as f:
         initial_stack, raw_instructions = f.read().split('\n\n')

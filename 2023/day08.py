@@ -4,7 +4,7 @@ from typing import Optional
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 08')
+    print("Advent of Code 2023 - Day 08: Haunted Wasteland")
 
     with open('day08.txt') as f:
         pattern = re.compile(r'[A-Z0-9]{3}')

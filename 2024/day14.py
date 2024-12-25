@@ -34,7 +34,7 @@ class Robot:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 14: Restroom Redoubt')
+    print("Advent of Code 2024 - Day 14: Restroom Redoubt")
 
     with open('day14.txt') as f:
         for line in f.read().strip().splitlines():

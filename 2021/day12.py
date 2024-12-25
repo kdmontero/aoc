@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 12')
+    print("Advent of Code 2021 - Day 12: Passage Pathing")
 
     with open('day12.txt') as f:
         connection = defaultdict(list)

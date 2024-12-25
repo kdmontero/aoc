@@ -16,7 +16,7 @@ class Pipe:
         self.outlet = (self.directions[self.tile] - {self.inlet}).pop()
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 10')
+    print("Advent of Code 2023 - Day 10: Pipe Maze")
 
     with open('day10.txt') as f:
         map_ = {}

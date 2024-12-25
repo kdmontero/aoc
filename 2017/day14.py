@@ -3,7 +3,7 @@ from day10 import KnotHash
 from day12 import group_qty
 
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 14')
+    print("Advent of Code 2017 - Day 14: Disk Defragmentation")
 
     INPUT = 'vbqugkhl'
 

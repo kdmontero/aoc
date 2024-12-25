@@ -3,7 +3,7 @@ import time
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 15: Warehouse Woes')
+    print("Advent of Code 2024 - Day 15: Warehouse Woes")
 
     with open('day15.txt') as f:
         map_, ins = f.read().strip().split('\n\n')

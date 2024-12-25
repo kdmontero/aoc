@@ -3,7 +3,7 @@ from copy import deepcopy
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 13')
+    print("Advent of Code 2023 - Day 13: Point of Incidence")
 
     with open('day13.txt') as f:
         patterns = []

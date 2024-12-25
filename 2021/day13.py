@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 13')
+    print("Advent of Code 2021 - Day 13: Transparent Origami")
 
     with open('day13.txt') as f:
         dots = set()

@@ -90,7 +90,7 @@ class Cart:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 13')
+    print("Advent of Code 2018 - Day 13: Mine Cart Madness")
 
     Track = dict[tuple[int, int], str | list[Cart]]
     with open('day13.txt') as f:

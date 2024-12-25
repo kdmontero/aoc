@@ -1,6 +1,6 @@
 import copy
 
-print('Advent of Code 2016 - Day 23')
+print("Advent of Code 2016 - Day 23: Safe Cracking")
 with open('day23.txt') as f:
     given_ins = [line.split(' ') for line in f.read().splitlines()]
 

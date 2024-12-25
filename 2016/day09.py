@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 09')
+print("Advent of Code 2016 - Day 09: Explosives in Cyberspace")
 with open('day09.txt') as file:
     f = file.read().strip()
 

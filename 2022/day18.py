@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 18')
+    print("Advent of Code 2022 - Day 18: Boiling Boulders")
 
     with open('day18.txt') as f:
         cubes = []

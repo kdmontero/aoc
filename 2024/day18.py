@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 18: RAM Run')
+    print("Advent of Code 2024 - Day 18: RAM Run")
 
     with open('day18.txt') as f:
         first_bytes = set()

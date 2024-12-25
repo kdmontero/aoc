@@ -3,7 +3,7 @@ from copy import deepcopy
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 17: Chronospatial Computer')
+    print("Advent of Code 2024 - Day 17: Chronospatial Computer")
 
     with open('day17.txt') as f:
         raw_registers, raw_program = f.read().strip().split('\n\n')

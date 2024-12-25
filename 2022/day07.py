@@ -34,7 +34,7 @@ class Node:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 07')
+    print("Advent of Code 2022 - Day 07: No Space Left On Device")
 
     with open('day07.txt') as f:
         commands = []

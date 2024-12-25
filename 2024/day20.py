@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 20: Race Condition')
+    print("Advent of Code 2024 - Day 20: Race Condition")
 
     with open('day20.txt') as f:
         step_track = {}

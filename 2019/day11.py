@@ -1,4 +1,4 @@
-print('Advent of Code 2019 - Day 11')
+print("Advent of Code 2019 - Day 11: Space Police")
 with open('day11.txt') as f:
     intcode = [int(num) for num in f.read().split(',')]
 intcode += [0]*1000

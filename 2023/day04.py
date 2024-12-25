@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 04')
+    print("Advent of Code 2023 - Day 04: Scratchcards")
 
     with open('day04.txt') as f:
         cards = []

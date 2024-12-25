@@ -1,7 +1,7 @@
 from collections import deque
 
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 16')
+    print("Advent of Code 2017 - Day 16: Permutation Promenade")
 
     PROGRAM = 'abcdefghijklmnop'
     with open('day16.txt') as f:

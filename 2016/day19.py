@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2016 - Day 19')
+print("Advent of Code 2016 - Day 19: An Elephant Named Joseph")
 INPUT = 3018458
 
 # part 1

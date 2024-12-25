@@ -1,7 +1,7 @@
 import copy
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 08')
+    print("Advent of Code 2021 - Day 08: Seven Segment Search")
     
     '''
       0:      1:      2:      3:      4:

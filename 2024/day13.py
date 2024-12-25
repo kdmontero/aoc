@@ -3,7 +3,7 @@ import re
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 13: Claw Contraption')
+    print("Advent of Code 2024 - Day 13: Claw Contraption")
 
     with open('day13.txt') as f:
         button_as = []

@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 06')
+print("Advent of Code 2017 - Day 06: Memory Reallocation")
 with open('day06.txt') as f:
     memory = [int(num) for num in f.read().split()]
 

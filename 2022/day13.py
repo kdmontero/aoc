@@ -1,7 +1,7 @@
 import functools
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 13')
+    print("Advent of Code 2022 - Day 13: Distress Signal")
 
     with open('day13.txt') as f:
         pairs = []

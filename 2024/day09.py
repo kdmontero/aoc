@@ -43,7 +43,7 @@ class LinkedList:
     
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 09')
+    print("Advent of Code 2024 - Day 09: Disk Fragmenter")
 
     with open('day09.txt') as f:
         disk_map = [int(num) for num in f.read().strip()]

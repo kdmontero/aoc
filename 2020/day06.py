@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 06')
+print("Advent of Code 2020 - Day 06: Custom Customs")
 with open('day06.txt') as f:
     data = [
         [set(individual) for individual in group.split('\n')] 

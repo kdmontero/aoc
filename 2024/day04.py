@@ -2,7 +2,7 @@ import re
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 04')
+    print("Advent of Code 2024 - Day 04: Ceres Search")
 
     with open('day04.txt') as f:
         word_search = [line for line in f.read().splitlines()]

@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2016 - Day 21')
+print("Advent of Code 2016 - Day 21: Scrambled Letters and Hash")
 with open('day21.txt') as f:
     instructions = []
     for line in f.read().splitlines():

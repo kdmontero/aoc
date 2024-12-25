@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 06')
+    print("Advent of Code 2018 - Day 06: Chronal Coordinates")
 
     with open('day06.txt') as f:
         top = left = 9999

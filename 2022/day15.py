@@ -1,7 +1,7 @@
 import re
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 15')
+    print("Advent of Code 2022 - Day 15: Beacon Exclusion Zone")
 
     with open('day15.txt') as f:
         sensors = []

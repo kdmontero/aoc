@@ -47,7 +47,7 @@ class Program:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 23')
+    print("Advent of Code 2017 - Day 23: Coprocessor Conflagration")
 
     with open('day23.txt') as f:
         instructions = [line.split() for line in f.read().splitlines()]
