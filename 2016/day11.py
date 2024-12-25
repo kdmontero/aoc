@@ -160,6 +160,7 @@ print(f'Part 1: {a_star(init_bldg)}') # 31
 
             
 # part 2
+# VERY SLOW AND UNOPTIMIZED SOLUTION, 30 MINS RUNTIME
 new_items = [ 
     len(elements) + 1,
     len(elements) + 2,
