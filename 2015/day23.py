@@ -1,4 +1,4 @@
-print('Advent of Code 2015 - Day 23')
+print("Advent of Code 2015 - Day 23: Opening the Turing Lock")
 with open('day23.txt') as f:
     instructions = []
     for line in f.read().splitlines():

@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2015 - Day 11')
+print("Advent of Code 2015 - Day 11: Corporate Policy")
 INPUT = 'hepxcrrq'
 
 def check1(pw):

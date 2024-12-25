@@ -1,6 +1,6 @@
 import hashlib
 
-print('Advent of Code 2015 - Day 04')
+print("Advent of Code 2015 - Day 04: The Ideal Stocking Stuffer")
 key = 'ckczppom'
 
 # part 1

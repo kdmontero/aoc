@@ -1,4 +1,4 @@
-print('Advent of Code 2015 - Day 19')
+print("Advent of Code 2015 - Day 19: Medicine for Rudolph")
 with open('day19.txt') as f:
     given_rep, medicine = f.read().split('\n\n')
     replacements = []

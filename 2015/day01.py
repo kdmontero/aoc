@@ -1,4 +1,4 @@
-print('Advent of Code 2015 - Day 01')
+print("Advent of Code 2015 - Day 01: Not Quite Lisp")
 with open('day01.txt') as f:
     directions = f.read()
 

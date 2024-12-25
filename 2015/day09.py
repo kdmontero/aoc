@@ -1,6 +1,6 @@
 import itertools
 
-print('Advent of Code 2015 - Day 09')
+print("Advent of Code 2015 - Day 09: All in a Single Night")
 with open('day09.txt') as f:
     paths = {}
     # format of paths:
