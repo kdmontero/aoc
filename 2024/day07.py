@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 07')
+    print("Advent of Code 2024 - Day 07: Bridge Repair")
 
     with open('day07.txt') as f:
         equations: list[tuple[int, list[int]]]  = []

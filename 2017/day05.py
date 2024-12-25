@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 05')
+print("Advent of Code 2017 - Day 05: A Maze of Twisty Trampolines, All Alike")
 with open('day05.txt') as f:
     offsets = [int(num) for num in f.read().splitlines()]
 

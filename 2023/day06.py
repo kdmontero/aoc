@@ -2,7 +2,7 @@ import math
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 06')
+    print("Advent of Code 2023 - Day 06: Wait For It")
 
     with open('day06.txt') as f:
         records = []

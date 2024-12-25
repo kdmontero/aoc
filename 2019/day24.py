@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2019 - Day 24')
+print("Advent of Code 2019 - Day 24: Planet of Discord")
 with open('day24.txt') as f:
     layout = set()
     for y, line in enumerate(f.read().splitlines()):

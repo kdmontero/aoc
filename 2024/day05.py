@@ -12,7 +12,7 @@ class Page:
         
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 05')
+    print("Advent of Code 2024 - Day 05: Print Queue")
 
     with open('day05.txt') as f:
         rules, raw_updates = f.read().split('\n\n')

@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 04')
+    print("Advent of Code 2022 - Day 04: Camp Cleanup")
 
     with open('day04.txt') as f:
         data = []

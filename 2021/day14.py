@@ -1,7 +1,7 @@
 import collections
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 14')
+    print("Advent of Code 2021 - Day 14: Extended Polymerization")
 
     with open('day14.txt') as f:
         template, raw_rules = f.read().split('\n\n')

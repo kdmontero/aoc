@@ -1,6 +1,6 @@
 from collections import Counter
 
-print('Advent of Code 2017 - Day 03')
+print("Advent of Code 2017 - Day 03: Spiral Memory")
 given = '325489'
 
 class Port:

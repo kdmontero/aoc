@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 12')
+print("Advent of Code 2016 - Day 12: Leonardo's Monorail")
 with open('day12.txt') as f:
     ins = [line.split(' ') for line in f.read().splitlines()]
 

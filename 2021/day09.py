@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 09')
+    print("Advent of Code 2021 - Day 09: Smoke Basin")
 
     with open('day09.txt') as f:
         hmap = {}

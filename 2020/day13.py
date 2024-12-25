@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 13')
+print("Advent of Code 2020 - Day 13: Shuttle Search")
 with open('day13.txt') as f:
     target, buses = f.read().split('\n')
     target = int(target)

@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 25')
+print("Advent of Code 2020 - Day 25: Combo Breaker")
 with open('day25.txt') as f:
     card_key, door_key = [int(num) for num in f.read().splitlines()]
 

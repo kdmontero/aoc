@@ -24,7 +24,7 @@ def group_qty(map_):
     return groups
 
 def main():
-    print('Advent of Code 2017 - Day 12')
+    print("Advent of Code 2017 - Day 12: Digital Plumber")
 
     with open('day12.txt') as f:
         pipes = {}

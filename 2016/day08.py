@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2016 - Day 08')
+print("Advent of Code 2016 - Day 08: Two-Factor Authentication")
 with open('day08.txt') as f:
     instructions = []
     for line in f.read().splitlines():

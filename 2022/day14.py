@@ -1,7 +1,7 @@
 import copy
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 14')
+    print("Advent of Code 2022 - Day 14: Regolith Reservoir")
 
     with open('day14.txt') as f:
         cave = {}

@@ -2,7 +2,7 @@ import re
 from itertools import permutations
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 16')
+    print("Advent of Code 2022 - Day 16: Proboscidea Volcanium")
 
     with open('day16.txt') as f:
         tunnels = {}

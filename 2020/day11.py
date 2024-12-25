@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-print('Advent of Code 2020 - Day 11')
+print("Advent of Code 2020 - Day 11: Seating System")
 with open('day11.txt') as f:
     original = {}
     lines = [line for line in f.read().split('\n')]

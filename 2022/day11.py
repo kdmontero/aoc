@@ -38,7 +38,7 @@ class Monkey:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 11')
+    print("Advent of Code 2022 - Day 11: Monkey in the Middle")
 
     with open('day11.txt') as f:
         for str_block in f.read().split('\n\n'):

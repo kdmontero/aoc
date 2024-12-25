@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 19')
+    print("Advent of Code 2017 - Day 19: A Series of Tubes")
 
     with open('day19.txt') as f:
         diagram = {}

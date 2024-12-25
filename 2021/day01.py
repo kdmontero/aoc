@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    print('Advent of Code 2021 - Day 01')
+    print("Advent of Code 2021 - Day 01: Sonar Sweep")
 
     with open('day01.txt') as f:
         depths = [int(x) for x in f.read().splitlines()]

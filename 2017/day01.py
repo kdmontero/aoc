@@ -1,4 +1,4 @@
-print('Advent of Code 2017 - Day 01')
+print("Advent of Code 2017 - Day 01: Inverse Captcha")
 with open('day01.txt') as f:
     digits = [int(n) for n in f.readline()]
 

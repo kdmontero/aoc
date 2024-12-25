@@ -1,6 +1,6 @@
 import itertools
 
-print('Advent of Code 2016 - Day 24')
+print("Advent of Code 2016 - Day 24: Air Duct Spelunking")
 
 with open('day24.txt') as f:
     grid = {}

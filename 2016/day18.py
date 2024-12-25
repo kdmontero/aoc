@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 18')
+print("Advent of Code 2016 - Day 18: Like a Rogue")
 with open('day18.txt') as f:
     row1 = f.readline()
 

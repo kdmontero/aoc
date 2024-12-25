@@ -50,7 +50,7 @@ class Knot:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 09')
+    print("Advent of Code 2022 - Day 09: Rope Bridge")
 
     with open('day09.txt') as f:
         motions = []

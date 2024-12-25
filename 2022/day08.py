@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 08')
+    print("Advent of Code 2022 - Day 08: Treetop Tree House")
 
     with open('day08.txt') as f:
         MAP_HEIGHT = 0

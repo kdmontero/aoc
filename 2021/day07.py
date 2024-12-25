@@ -1,7 +1,7 @@
 import statistics
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 07')
+    print("Advent of Code 2021 - Day 07: The Treachery of Whales")
     with open('day07.txt') as f:
         crabs = [int(i) for i in f.read().split(',')]
     

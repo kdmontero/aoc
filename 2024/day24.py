@@ -2,7 +2,7 @@ from collections.abc import Mapping
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 24: Crossed Wires')
+    print("Advent of Code 2024 - Day 24: Crossed Wires")
 
     with open('day24.txt') as f:
         raw_states, raw_gates = f.read().strip().split('\n\n')

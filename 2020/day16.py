@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-print('Advent of Code 2020 - Day 16')
+print("Advent of Code 2020 - Day 16: Ticket Translation")
 with open('day16.txt') as f:
     rules = {}
     nearby_tickets = []

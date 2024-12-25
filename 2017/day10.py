@@ -65,7 +65,7 @@ class KnotHash:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 10')
+    print("Advent of Code 2017 - Day 10: Knot Hash")
 
     with open('day10.txt') as f:
         given_string = f.read()

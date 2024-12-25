@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 15')
+    print("Advent of Code 2017 - Day 15: Dueling Generators")
     
     FACTOR_A = 16807
     FACTOR_B = 48271

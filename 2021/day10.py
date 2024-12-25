@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 10')
+    print("Advent of Code 2021 - Day 10: Syntax Scoring")
 
     with open('day10.txt') as f:
         lines = f.read().splitlines()

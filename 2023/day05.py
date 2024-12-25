@@ -18,7 +18,7 @@ class Converter:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 05')
+    print("Advent of Code 2023 - Day 05: If You Give A Seed A Fertilizer")
 
     with open('day05.txt') as f:
         s, map1, map2, map3, map4, map5, map6, map7 = f.read().split('\n\n')

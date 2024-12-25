@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 06')
+    print("Advent of Code 2024 - Day 06: Guard Gallivant")
 
     with open('day06.txt') as f:
         map_ = {}

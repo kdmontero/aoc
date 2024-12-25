@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-print('Advent of Code 2017 - Day 08')
+print("Advent of Code 2017 - Day 08: I Heard You Like Registers")
 
 with open('day08.txt') as f:
     raw_ins = []

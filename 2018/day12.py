@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2018 - Day 12')
+    print("Advent of Code 2018 - Day 12: Subterranean Sustainability")
 
     with open('day12.txt') as f:
         raw_pots, raw_notes = f.read().strip().split('\n\n')

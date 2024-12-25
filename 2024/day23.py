@@ -1,6 +1,6 @@
 from collections import defaultdict
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 23: LAN Party')
+    print("Advent of Code 2024 - Day 23: LAN Party")
 
     with open('day23.txt') as f:
         network = defaultdict(set)

@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 10')
+print("Advent of Code 2016 - Day 10: Balance Bots")
 with open('day10.txt') as f:
     ins = {}
     start = []

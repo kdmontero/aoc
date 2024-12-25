@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 25: Code Chronicle')
+    print("Advent of Code 2024 - Day 25: Code Chronicle")
 
     with open('day25.txt') as f:
         locks = []

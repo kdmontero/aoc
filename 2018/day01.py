@@ -1,6 +1,6 @@
 from itertools import cycle
 
-print('Advent of Code 2018 - Day 01')
+print("Advent of Code 2018 - Day 01: Chronal Calibration")
 with open('day01.txt') as f:
     sequence = f.read().splitlines()
 

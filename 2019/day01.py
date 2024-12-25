@@ -1,4 +1,4 @@
-print('Advent of Code 2019 - Day 01')
+print("Advent of Code 2019 - Day 01: The Tyranny of the Rocket Equation")
 with open('day01.txt') as given:
     masses = [int(line) for line in given.read().split('\n')]
 

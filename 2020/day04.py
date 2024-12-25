@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 04')
+print("Advent of Code 2020 - Day 04: Passport Processing")
 with open('day04.txt') as given:
     passports = []
     pp_details = {}

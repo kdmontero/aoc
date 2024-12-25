@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 11')
+    print("Advent of Code 2023 - Day 11: Cosmic Expansion")
 
     with open('day11.txt') as f:
         orig_image = []

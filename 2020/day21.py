@@ -1,7 +1,7 @@
 from copy import deepcopy
 from collections import OrderedDict
 
-print('Advent of Code 2020 - Day 21')
+print("Advent of Code 2020 - Day 21: Allergen Assessment")
 with open('day21.txt') as f:
     foods = []
     ingredients = set()

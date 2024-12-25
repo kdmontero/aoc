@@ -1,7 +1,7 @@
 import copy
 
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 12')
+    print("Advent of Code 2022 - Day 12: Hill Climbing Algorithm")
 
     with open('day12.txt') as f:
         map_ = {}

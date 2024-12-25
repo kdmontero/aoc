@@ -2,7 +2,7 @@ import os
 import time
 import copy
 
-print('Advent of Code 2019 - Day 15')
+print("Advent of Code 2019 - Day 15: Oxygen System")
 with open('day15.txt') as f:
     intcode = [int(num) for num in f.read().split(',')]
 intcode += [0]*1000

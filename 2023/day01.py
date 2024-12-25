@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 01')
+    print("Advent of Code 2023 - Day 01: Trebuchet?!")
 
     with open('day01.txt') as f:
         document = [line for line in f.read().splitlines()]

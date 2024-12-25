@@ -1,7 +1,7 @@
 import copy
 
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 22')
+    print("Advent of Code 2017 - Day 22: Sporifica Virus")
 
     with open('day22.txt') as f:
         given_infected_nodes = set()

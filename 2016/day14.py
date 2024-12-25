@@ -1,7 +1,7 @@
 import hashlib
 import collections
 
-print('Advent of Code 2016 - Day 14')
+print("Advent of Code 2016 - Day 14: One-Time Pad")
 INPUT = 'qzyelonm'
 
 def get_hash(salt, num, repeat):

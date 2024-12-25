@@ -62,7 +62,7 @@ class Program:
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2017 - Day 18')
+    print("Advent of Code 2017 - Day 18: Duet")
 
     with open('day18.txt') as f:
         instructions = [line.split() for line in f.read().splitlines()]

@@ -4,7 +4,7 @@ from copy import deepcopy
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 07')
+    print("Advent of Code 2023 - Day 07: Camel Cards")
 
     with open('day07.txt') as f:
         hands = []

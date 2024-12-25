@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2024 - Day 22: Monkey Market')
+    print("Advent of Code 2024 - Day 22: Monkey Market")
 
     with open('day22.txt') as f:
         secret_nums = [int(num) for num in f.read().strip().splitlines()]

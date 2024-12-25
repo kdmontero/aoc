@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 21')
+    print("Advent of Code 2023 - Day 21: Step Counter")
 
     with open('day21.txt') as f:
         grid = set()

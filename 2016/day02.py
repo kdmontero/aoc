@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 02')
+print("Advent of Code 2016 - Day 02: Bathroom Security")
 with open('day02.txt') as f:
     instructions = f.read().splitlines()
 

@@ -1,4 +1,4 @@
-print('Advent of Code 2018 - Day 03')
+print("Advent of Code 2018 - Day 03: No Matter How You Slice It")
 with open('day03.txt') as f:
     given = [line.replace('#','').replace('@ ','').replace(
         ':','').split(' ') for line in f.read().splitlines()]

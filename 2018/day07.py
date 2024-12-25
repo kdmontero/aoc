@@ -1,6 +1,6 @@
 import heapq
 
-print('Advent of Code 2018 - Day 07')
+print("Advent of Code 2018 - Day 07: The Sum of Its Parts")
 with open('day07.txt') as f:
     letters = set()
     nodes_before = {}

@@ -1,7 +1,7 @@
 import copy
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 11')
+    print("Advent of Code 2021 - Day 11: Dumbo Octopus")
 
     with open('day11.txt') as f:
         given_octopus = {}

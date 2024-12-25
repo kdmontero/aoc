@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 16')
+    print("Advent of Code 2023 - Day 16: The Floor Will Be Lava")
 
     with open('day16.txt') as f:
         grid = {}

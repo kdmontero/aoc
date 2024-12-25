@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2017 - Day 07')
+print("Advent of Code 2017 - Day 07: Recursive Circus")
 with open('day07.txt') as f:
     base_program = {}
     weights = {}

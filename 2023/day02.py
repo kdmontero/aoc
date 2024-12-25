@@ -1,7 +1,7 @@
 import re
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 02')
+    print("Advent of Code 2023 - Day 02: Cube Conundrum")
 
     with open('day02.txt') as f:
         game = {}

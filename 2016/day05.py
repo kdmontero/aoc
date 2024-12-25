@@ -1,6 +1,6 @@
 import hashlib
 
-print('Advent of Code 2016 - Day 05')
+print("Advent of Code 2016 - Day 05: How About a Nice Game of Chess?")
 INPUT = 'ojvtpuvg'
 
 # part 1

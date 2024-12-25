@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Advent of Code 2022 - Day 06')
+    print("Advent of Code 2022 - Day 06: Tuning Trouble")
 
     with open('day06.txt') as f:
         signal = f.read()

@@ -1,7 +1,7 @@
 from collections import Counter
 
 if __name__ == '__main__':
-    print('Advent of Code 2021 - Day 03')
+    print("Advent of Code 2021 - Day 03: Binary Diagnostic")
 
     with open('day03.txt') as f:
         report = f.read().splitlines()

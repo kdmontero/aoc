@@ -1,6 +1,6 @@
 from collections import Counter
 
-print('Advent of Code 2019 - Day 04')
+print("Advent of Code 2019 - Day 04: Secure Container")
 given = '372304-847060'
 
 min_, max_ = tuple(given.split('-'))

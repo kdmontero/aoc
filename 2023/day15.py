@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 15')
+    print("Advent of Code 2023 - Day 15: Lens Library")
 
     with open('day15.txt') as f:
         seq = [s for s in f.read().split(',')]

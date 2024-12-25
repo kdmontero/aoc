@@ -1,4 +1,4 @@
-print('Advent of Code 2018 - Day 05')
+print("Advent of Code 2018 - Day 05: Alchemical Reduction")
 with open('day05.txt') as f:
     given_polymers = f.read().strip()
 

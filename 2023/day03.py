@@ -2,7 +2,7 @@ import re
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 03')
+    print("Advent of Code 2023 - Day 03: Gear Ratios")
 
     with open('day03.txt') as f:
         map_ = {}

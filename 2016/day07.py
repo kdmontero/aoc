@@ -1,4 +1,4 @@
-print('Advent of Code 2016 - Day 07')
+print("Advent of Code 2016 - Day 07: Internet Protocol Version 7")
 with open('day07.txt') as f:
     ip_addrs = f.read().splitlines()
 

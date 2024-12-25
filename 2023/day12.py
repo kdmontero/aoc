@@ -3,7 +3,7 @@ from functools import lru_cache
 
 
 if __name__ == '__main__':
-    print('Advent of Code 2023 - Day 12')
+    print("Advent of Code 2023 - Day 12: Hot Springs")
 
     with open('day12.txt') as f:
         reports = []

@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2016 - Day 06')
+print("Advent of Code 2016 - Day 06: Signals and Noise")
 with open('day06.txt') as f:
     messages = f.read().splitlines()
 

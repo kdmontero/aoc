@@ -1,4 +1,4 @@
-print('Advent of Code 2020 - Day 15')
+print("Advent of Code 2020 - Day 15: Rambunctious Recitation")
 given = '8,11,0,19,1,2'
 start = [int(i) for i in given.split(',')]
 
