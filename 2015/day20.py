@@ -2,7 +2,7 @@ import collections
 import itertools
 import math
 
-print('Advent of Code 2015 - Day 20')
+print("Advent of Code 2015 - Day 20: Infinite Elves and Infinite Houses")
 INPUT = 36000000
 
 # part 1

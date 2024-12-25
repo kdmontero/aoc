@@ -1,6 +1,6 @@
 import json
 
-print('Advent of Code 2015 - Day 12')
+print("Advent of Code 2015 - Day 12: JSAbacusFramework.io")
 with open('day12.txt') as f:
     doc = json.loads(f.read())
 

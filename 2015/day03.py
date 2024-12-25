@@ -1,4 +1,4 @@
-print('Advent of Code 2015 - Day 03')
+print("Advent of Code 2015 - Day 03: Perfectly Spherical Houses in a Vacuum")
 with open('day03.txt') as f:
     directions = list(f.readline())
 

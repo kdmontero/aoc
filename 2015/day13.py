@@ -1,6 +1,6 @@
 import itertools
 
-print('Advent of Code 2015 - Day 13')
+print("Advent of Code 2015 - Day 13: Knights of the Dinner Table")
 with open('day13.txt') as f:
     notes = {}
     for line in f.read().splitlines():

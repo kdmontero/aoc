@@ -1,4 +1,4 @@
-print('Advent of Code 2015 - Day 02')
+print("Advent of Code 2015 - Day 02: I Was Told There Would Be No Math")
 with open('day02.txt') as f:
     gifts = [[int(i) for i in gift.split('x')] 
         for gift in f.read().splitlines()]

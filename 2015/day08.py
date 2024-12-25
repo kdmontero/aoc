@@ -1,4 +1,4 @@
-print('Advent of Code 2015 - Day 08')
+print("Advent of Code 2015 - Day 08: Matchsticks")
 with open('day08.txt') as f:
     strings = []
     y = 0

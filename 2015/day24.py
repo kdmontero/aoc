@@ -1,7 +1,7 @@
 import collections
 import math
 
-print('Advent of Code 2015 - Day 24')
+print("Advent of Code 2015 - Day 24: It Hangs in the Balance")
 with open('day24.txt') as f:
     packages = sorted([int(i) for i in f.read().splitlines()])
 

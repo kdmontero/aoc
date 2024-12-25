@@ -1,6 +1,6 @@
 import collections
 
-print('Advent of Code 2015 - Day 18')
+print("Advent of Code 2015 - Day 18: Like a GIF For Your Yard")
 with open('day18.txt') as f:
     board = f.read().splitlines()
 

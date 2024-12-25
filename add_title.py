@@ -39,15 +39,15 @@ if __name__ == '__main__':
     with open(env_path) as f:
         session_cookie = f.read().strip()
 
-    for year in range(2016, 2025):
+    for year in range(2015, 2025):
         for day in range(1, 26):
             day_title = get_title(year, day, session_cookie)
 
             day = str(day).rjust(2, '0')
             file_path = os.path.join(env_dir, f'{year}/day{day}.py')
 
-            check_title = f"print('Advent of Code {year} - Day {day}: "
-            old_title = f"print('Advent of Code {year} - Day {day}: {day_title}')"
+            check_title = f'print("Advent of Code {year} - Day {day}: '
+            old_title = f"print('Advent of Code {year} - Day {day}')"
             new_title = f'print("Advent of Code {year} - Day {day}: {day_title}")'
 
             if (os.path.isfile(file_path)):

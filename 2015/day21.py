@@ -1,6 +1,6 @@
 import math
 
-print('Advent of Code 2015 - Day 21')
+print("Advent of Code 2015 - Day 21: RPG Simulator 20XX")
 class Character:
     def __init__(self, hp, damage, defense):
         self.hp = hp
