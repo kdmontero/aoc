@@ -39,7 +39,7 @@ def initiate_script(year: int, day: int, session_cookie: str) -> None:
     # generate the template code
     code = (
         "if __name__ == '__main__':\n"
-        f"    print('Advent of Code {year} - Day {day}: {title}')\n\n"
+        f'    print("Advent of Code {year} - Day {day}: {title}")\n\n'
         f"    with open('day{day}.txt') as f:\n"
         "        pass\n\n\n"
         "    # part 1\n\n"
