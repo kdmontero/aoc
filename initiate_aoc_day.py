@@ -31,6 +31,10 @@ def initiate_script(year: int, day: int, session_cookie: str) -> None:
     pattern = re.compile(r'Day [\d]+: (.+) ---')
     title = pattern.findall(response.text)[0]
 
+    if day == '25':
+        part2_text = f'Complete all 49 stars in Advent of Code {year}'
+    else:
+        part2_text = '{0}'
 
     # generate the template code
     code = (
@@ -38,8 +42,10 @@ def initiate_script(year: int, day: int, session_cookie: str) -> None:
         f"    print('Advent of Code {year} - Day {day}: {title}')\n\n"
         f"    with open('day{day}.txt') as f:\n"
         "        pass\n\n\n"
+        "    # part 1\n\n"
         "    print(f'Part 1: {0}') #\n\n\n"
-        "    print(f'Part 2: {0}') #\n\n"
+        "    # part 2\n\n"
+        f"    print(f'Part 2: {part2_text}') #\n\n"
     )
 
     with open(f'day{day}.py', 'w') as f:
