@@ -28,14 +28,10 @@ if __name__ == '__main__':
             num += 2 * (5 ** i)
 
         # i+1 = length of SNAFU digits
+        # initialize snafu with 'X' as unknown digits
+        snafu = 'X' * (i + 1) 
 
-        # find the leftmost digit, this is either 1 or 2
-        if snafu_to_decimal('1' + '2' * i) >= given:
-            snafu = '1' + 'X' * i
-        else:
-            snafu = '2' + 'X' * i
-
-        # populate the rest of the digits 1-by-1 by finding the correct bound
+        # populate digits 1-by-1 from the right by finding the correct bound
         while 'X' in snafu:
             for next_digit in ['=', '-', '0', '1', '2']:
                 low_bound = snafu.replace('X', next_digit, 1).replace('X', '=')
