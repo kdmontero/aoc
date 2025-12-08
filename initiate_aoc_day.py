@@ -26,13 +26,16 @@ def initiate_script(year: int, day: int, session_cookie: str) -> None:
         else:
             break
     else:
-        exit('timed out after 5 failed attempts')
+        exit('Timed out after 5 failed attempts. ' \
+            'Puzzle might not yet be ready, or session has expired.')
 
     pattern = re.compile(r'Day [\d]+: (.+) ---')
     title = pattern.findall(response.text)[0]
 
-    if day == '25':
+    if day == '25' and (2015 <= int(year) <= 2024):
         part2_text = f'Complete all 49 stars in Advent of Code {year}'
+    elif day == '12' and int(year) >= 2025:
+        part2_text = f'Complete all 23 stars in Advent of Code {year}'
     else:
         part2_text = '{0}'
 
