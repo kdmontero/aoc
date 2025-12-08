@@ -111,8 +111,13 @@ if __name__ == '__main__':
     if (int(year) < 2015) or (int(year) > 2100):
         exit('Error: Invalid year')
 
-    if (int(day) < 1) or (int(day) > 25):
-        exit('Error: Invalid day')
+    if 2015 <= int(year) <= 2024:
+        if (int(day) < 1) or (int(day) > 25):
+            exit('Error: Invalid day')
+    else:
+        if (int(day) < 1) or (int(day) > 12):
+            exit('Error: Invalid day. Starting 2025, AOC only has 12 days')
+
 
 
 
