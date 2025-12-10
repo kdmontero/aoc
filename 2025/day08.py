@@ -6,6 +6,8 @@ if __name__ == '__main__':
     print("Advent of Code 2025 - Day 08: Playground")
 
     BoxCoord = tuple[int, int, int]
+    BoxPairCoords = tuple[BoxCoord, BoxCoord]
+
     with open('day08.txt') as f:
         boxes: set[BoxCoord] = set()
         for line in f.read().strip().splitlines():
@@ -21,7 +23,7 @@ if __name__ == '__main__':
 
         return (x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2
 
-    distances_map: dict[int, list[tuple[BoxCoord]]] = defaultdict(list)
+    distances_map: dict[int, list[BoxPairCoords]] = defaultdict(list)
     distances_set: set[int] = set()
 
     for box1, box2 in combinations(boxes, 2):
@@ -30,7 +32,7 @@ if __name__ == '__main__':
         distances_set.add(distance)
 
     sorted_distances: list[int] = sorted(list(distances_set))
-    sorted_pairs: list[tuple[BoxCoord]] = []
+    sorted_pairs: list[BoxPairCoords] = []
     for distance in sorted_distances:
         sorted_pairs += distances_map[distance]
 
