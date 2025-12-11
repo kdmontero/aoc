@@ -1,5 +1,3 @@
-from itertools import combinations
-
 if __name__ == '__main__':
     print("Advent of Code 2025 - Day 05: Cafeteria")
 
